@@ -1,4 +1,4 @@
-#### React面经：
+#### React要点：
 
 + **React中key的作用是什么？**
 
@@ -97,12 +97,16 @@
   + state是组件数据结构，可能随用户操作而变化
   + props是父组件传递而来，作为子组件不能修改props
 + **什么是受控组件？**
+
   + 受控组件针对于诸如<input> <select> <texarea>等表单元素。由于这些元素自身会维护自身的数据状态(即元素本身会自动获取数据)，并在界面做相应变化。 在React中所有的数据状态都应该有state同意管理，在改变<input>的值时应该使用onchange事件进行state的修改，把input的值作为一个由React的操作，这样的组件叫"受控组件"，且推荐使用受控组件
 + **什么是高阶组件？（HOC）**
+
   + 一个以组件作为参数并返回一个新组件的**函数**。 最常见的就是Reux的connect函数
 + **在构造函数(constructor)中调用super(props)的目的是什么？**
+
   + 因为组件都继承与React的Component，而子类在super调用前是无法按使用this的。传递props作为参数的原因是，便于在构造函数中使用this.props
 + **应该在哪里发起Ajx请求？**
+
   + 在ComponentDidMount，因为该生命周期在被添加到DOM时执行(已经在页面上有真是dom)。  Ajax的请求无法保证在dom已经完全挂载，如果不在ComponentDidMount周期使用，无法保证Ajax中的setState操作有对应的视图可操作。此时调用Ajax可以保证能够有组件可以更新
 
 + **React创建组件的方式**
