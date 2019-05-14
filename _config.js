@@ -31,27 +31,8 @@
 				tags: ["React", "知识点", "要点", "笔记"],
 				path: articleBaseUrl+'React要点.md',
 				isOverview: true
-			},
-			{
-				id: '201905072329',
-				name: "for testing",
-				des: "testingtestingtesting",
-				lag: ['testing'],
-				see: 3,
-				tags: ["testing"],
-				path: '',
-				isOverview: true
-			},
-			{
-				id: '201905072329',
-				name: "for testing2",
-				des: "testingtestingtesting",
-				lag: ['testing'],
-				see: 3,
-				tags: ["testing"],
-				path: '',
-				isOverview: true
 			}
+			
 		]
 	}
 	window._config = _config;
