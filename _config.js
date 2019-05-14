@@ -36,4 +36,4 @@
 	}
 	window._config = _config;
 	// export default _config;
-})
+})()
