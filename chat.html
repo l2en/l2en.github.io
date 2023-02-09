@@ -1,0 +1,193 @@
+<!--
+    @author luolen5@gmail.com
+    @email luolen5@gmail.com
+    @create date 2022-05-15 00:41:08
+    @modify date 2022-05-15 00:41:08
+    @desc a chat view with javascript&html&css
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>chat for u</title>
+</head>
+<style>
+	* {
+		padding: 0;
+		margin: 0;
+		box-sizing: border-box;
+		transition: all 0.16s ease-in;
+	}
+
+	body {
+		background-color: #002c37;
+		padding: 10px 20px;
+		color: #208f0e;
+		overflow: hidden;
+	}
+
+	fieldset {
+		font-size: 18px;
+		display: inline-block;
+		border: #208f0e 1px solid;
+		overflow: hidden;
+		height: 90vh;
+		display: flex;
+		flex-direction: column;
+		position: relative;
+	}
+
+	legend {
+		font-weight: bold;
+		color: #208f0e;
+		padding-left: 10px;
+		padding-right: 10px;
+		margin-left: 40px;
+	}
+
+	.chat-area {
+		padding: 4px 30px;
+		overflow: auto;
+		height: 80%;
+		scroll-behavior: smooth;
+	}
+
+	.chat-area::-webkit-scrollbar {
+		display: none;
+		height: 0;
+		width: 0;
+	}
+
+	.chat-area::after {
+		content: '';
+		display: block;
+		clear: both;
+	}
+
+	.chat-chunk {
+		font-size: 18px;
+		align-items: center;
+		margin-top: 10px;
+		overflow: hidden;
+	}
+	.chat-chunk .post {
+		float: right;
+	}
+
+	.chat-chunk .get {
+		float: left;
+	}
+	.get, .post {
+		color:#37b922;
+		background-color: #4c4b1c;
+		padding: 8px;
+		display: inline-block;
+		max-width: 52%;
+	}
+	.msg-inputer {
+		width: 100%;
+		border-top: 1px #208f0e dashed;
+		margin-top: 10px;
+		color: #208f0e;
+		background-color: rgba(255, 0, 0, 0.156);
+		font-size: 18px;
+		padding: 4px;
+		position: absolute;
+		bottom: 0;
+		height: 16%;
+		resize: none;
+	}
+	.msg-inputer:focus {
+		outline: none;
+	}
+
+	.msg-inputer::-webkit-scrollbar {
+		display: none;
+		height: 0;
+		width: 0;
+	}
+</style>
+
+<body>
+	<fieldset>
+		<legend>Easy-ChatGPT</legend>
+		<div class="chat-area">
+			<div class="chat-chunk">
+				<div class="get">Hi i'm chat robot</div>
+			</div>
+			<div class="chat-chunk">
+				<div class="post">???</div>
+			</div>
+			<div class="chat-chunk">
+				<div class="get">u can call me sth. Let's go :)</div>
+			</div>
+		</div>
+		<textarea autofocus class="msg-inputer"></textarea>
+	</fieldset>
+</body>
+<script defer async src="./mock.js"></script>
+<script src="./full-screen.js"></script>
+<script>
+	window.addEventListener('mousemove', function (e) {
+		if (document.fullscreen) {
+			window.removeEventListener('mousemove', arguments.callee);
+		} else {
+			window.addEventListener('mousemove', window.fullScreen);
+		}
+		document.querySelector('.msg-inputer').focus();
+	});
+	window.onload = function () {
+		scrollToBottom();
+	}
+	var ipt = document.querySelector('.msg-inputer');
+	ipt.addEventListener('keydown', function (e) {
+		if (e.keyCode === 13) { // 回车发送
+			var msg = ipt.value.replace(/(^\s*)|(\s*$)/g, '');
+			if(msg == 'clear()') { // 清空
+				document.querySelector('.chat-area').innerHTML = '';
+				setTimeout(() => {
+					ipt.value = '';
+				}, 10);
+				return;
+			}
+			if (msg) {
+				var chat = document.createElement('div');
+				var content = document.createElement('div');
+				chat.className = 'chat-chunk';
+				content.className = 'post';
+				content.innerHTML = msg;
+				chat.appendChild(content);
+				document.querySelector('.chat-area').appendChild(chat);
+				getmsg();
+				scrollToBottom();
+			}
+			setTimeout(() => {
+				ipt.value = '';
+			}, 10);
+		}
+	});
+
+	function getmsg() {
+		var timer = setTimeout(() => {
+			var chat = document.createElement('div');
+			var content = document.createElement('div');
+			chat.className = 'chat-chunk';
+			content.className = 'get';
+			content.innerHTML = Mock.Random.cparagraph();
+			chat.appendChild(content);
+			document.querySelector('.chat-area').appendChild(chat);
+			scrollToBottom();
+			clearTimeout(timer);
+		}, 1000);
+	}
+
+	function scrollToBottom() {
+		document.querySelector('.chat-area').scrollTop = Number.MAX_SAFE_INTEGER;
+	}
+</script>
+
+</html>
