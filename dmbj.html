@@ -1,0 +1,1294 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <video id="myVideo" src="https://webfs.tx.kugou.com/202305311510/fb4f6f8cd0101fc9cb70971bc7c346bc/v2/363ec5946afc285104acdd7abdf6f16c/KGTX/CLTX001/363ec5946afc285104acdd7abdf6f16c.mp3" controls="controls">
+  </video>
+  <button id="next" index="0">next</button>
+</body>
+</html>
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script>
+  var list = [
+    {
+      "name": "【极速30s】盗墓笔记",
+      "url": "https://webfs.tx.kugou.com/202305311510/fb4f6f8cd0101fc9cb70971bc7c346bc/v2/363ec5946afc285104acdd7abdf6f16c/KGTX/CLTX001/363ec5946afc285104acdd7abdf6f16c.mp3"
+    },
+    {
+      "name": "南派三叔经典悬疑神作-极速听《盗墓笔记》",
+      "url": "https://webfs.tx.kugou.com/202305311511/f867e8c3dfdcd35c6c8ca34c7cc42695/v2/c9fa981c1aa96ec520379905c18aa90d/KGTX/CLTX001/c9fa981c1aa96ec520379905c18aa90d.mp3"
+    },
+    {
+      "name": "第一部 七星鲁王 第01章 (周建龙演播 沉浸式弹幕)",
+      "url": "https://webfs.tx.kugou.com/202305311511/0d21f3368e8fb8a3539425b1c6a9d367/v2/2cdf6d21eeb2c2b9362a0925901253db/G213/M08/17/09/tZQEAF61FHSAfxB9AV3PyOOH41s887.mp3"
+    },
+    {
+      "name": "第一部 七星鲁王 第02章 (周建龙演播身临其境带你'下墓'!)",
+      "url": "https://webfs.tx.kugou.com/202305311511/605838c2d08520a3571f478dd8e18552/v2/f69fe17198c39dcb6d9db43ba2143205/G234/M06/0E/11/ypQEAF81G-yAQ70eAV3EWvPEXw8459.mp3"
+    },
+    {
+      "name": "第一部 七星鲁王 第03章 (全网独家免费诚意满满良心作)",
+      "url": "https://webfs.tx.kugou.com/202305311509/8f894105c6f1166dc28320025b2f88ac/v2/7fa27d7ce4c8908907f8f265fbb7d827/G221/M0A/01/11/HQ4DAF81Ct-APfAoAVwDX4M9Hlg856.mp3"
+    },
+    {
+      "name": "第一部 七星鲁王 第04章",
+      "url": "https://webfs.tx.kugou.com/202305311511/940614f1123a98144e6fda2ee9346498/v2/4d55a1dbf9d517218b0967290cee3986/G228/M05/13/0B/xJQEAF81DzuAJ49sAVwLiV7-kqI698.mp3"
+    },
+    {
+      "name": "第一部 七星鲁王 第05章",
+      "url": "https://webfs.tx.kugou.com/202305311511/b98a87191e98cdc293612a49bfae3c04/v2/0a1b5c59857483e63e152b155e39d22d/G199/M0A/12/09/Bw4DAF6O_ZeAD5i2AVYyBgSBBKg752.mp3"
+    },
+    {
+      "name": "第一部 七星鲁王 第06章",
+      "url": "https://webfs.tx.kugou.com/202305311511/bc9174c1b8f61683e1caac626b3d452b/v2/6fe5ed289666c0ee5cf1b85db8ab4412/G195/M03/0E/15/Y4cBAF6O-X2AX_3lAVvOwnBJKn0445.mp3"
+    },
+    {
+      "name": "第一部 七星鲁王 第07章",
+      "url": "https://webfs.tx.kugou.com/202305311511/42c998bc6315c6016ff96bab95c17632/v2/b5a059058d428785920ae2c056aa890d/G235/M02/07/08/y5QEAF81EtGAN2N4AV84mdM0_s0005.mp3"
+    },
+    {
+      "name": "第一部 七星鲁王 第08章",
+      "url": "https://webfs.tx.kugou.com/202305311511/91d0282bcb67bf219e4fdd4d1f5dfe4f/v2/1ee633000a410e9b2e1fc9e0ec4cb32b/G232/M06/05/13/KA4DAF81AvyAaUPNAVcsMPF8OZs226.mp3"
+    },
+    {
+      "name": "第一部 七星鲁王 第09章",
+      "url": "https://webfs.tx.kugou.com/202305311511/e036dda93426e681d3659096e84544ae/v2/00c1c74a2fa8d8e71c4c3c8f2e45ee74/G236/M08/0C/01/LA4DAF81AkGAPMHaAVmVVcDtH4Q171.mp3"
+    },
+    {
+      "name": "第一部 七星鲁王 第10章",
+      "url": "https://webfs.tx.kugou.com/202305311511/f6db1a293891b51c63c6678fb62252b1/v2/4b6f9d3f325c19506545a77e0735722d/G229/M02/19/08/JQ4DAF81G3GAdKxfAVhaO6mjjuc033.mp3"
+    },
+    {
+      "name": "第一部 七星鲁王 第11章",
+      "url": "https://webfs.tx.kugou.com/202305311511/6aa3b7c5f8ee6a46c60c77a20b42aabe/v2/f52794b4d0f478c59f6c4d66b20c7c92/G209/M08/1E/15/EQ4DAF6O70-AALUjAWpXoLu3uoM381.mp3"
+    },
+    {
+      "name": "第一部 七星鲁王 第12章",
+      "url": "https://webfs.tx.kugou.com/202305311511/b80c436b956035d1f70beca097182d53/v2/18bdacbaf77a570213f7f5cb90f17bde/G192/M0B/0D/1B/YIcBAF6O-d-AVyYVAWoF_jXjXQY996.mp3"
+    },
+    {
+      "name": "第一部 七星鲁王 第13章",
+      "url": "https://webfs.tx.kugou.com/202305311511/5163482603683a03a856959c468815cb/v2/63931c33e26429c981c9fcc65b6a2d1f/G192/M01/1B/17/AA4DAF6O-miAKmZWAWgkT6Z1XRI300.mp3"
+    },
+    {
+      "name": "第一部 七星鲁王 第14章",
+      "url": "https://webfs.tx.kugou.com/202305311511/c418d24fc941a89486ff11919a9bb594/v2/f9b0c84f587a95a11635f010e3d37104/G212/M07/00/17/dIcBAF6PAEiAV2o2AWnjpy8IKcA815.mp3"
+    },
+    {
+      "name": "第一部 七星鲁王 第15章",
+      "url": "https://webfs.tx.kugou.com/202305311511/ec7b05a57011113b7162ab675943de5e/v2/08d11abe8858923ec1fd5782711cce92/G234/M05/02/19/Kg4DAF80-xeACqc1AWk4mVeEIp4319.mp3"
+    },
+    {
+      "name": "第一部 七星鲁王 第16章",
+      "url": "https://webfs.tx.kugou.com/202305311511/2c6d4252a5f1f3c251b128547b10f8eb/v2/b9bb6604a85b1a904d8421a42d82af0b/KGTX/CLTX001/b9bb6604a85b1a904d8421a42d82af0b.mp3"
+    },
+    {
+      "name": "第一部 七星鲁王 第17章",
+      "url": "https://webfs.tx.kugou.com/202305311511/9d830f97b5f0b00bc2cbf53623fd6f30/v2/a106dd4d8ffa232f1fbda7571e61b182/G214/M08/10/19/tpQEAF7HpSiAM3wVAW17Z6AqXrk468.mp3"
+    },
+    {
+      "name": "第一部 七星鲁王 第18章",
+      "url": "https://webfs.tx.kugou.com/202305311511/6f6331cf24e7d279716f3d6b70261eeb/v2/db6efad087c77b26d505c0eafe17b221/G211/M08/16/0D/Ew4DAF6ZUHuANoGeAWwl_DgSJlY244.mp3"
+    },
+    {
+      "name": "第一部 七星鲁王 第19章",
+      "url": "https://webfs.tx.kugou.com/202305311511/f445520514ec937d2b6298a029d9d8ae/v2/55e0cff5a31e4af56bb3c8f4a6653365/G201/M05/11/11/aYcBAF6O-HiAYsAeAWgNc0NY0Y8815.mp3"
+    },
+    {
+      "name": "第一部 七星鲁王 第20章",
+      "url": "https://webfs.tx.kugou.com/202305311511/9ea183c96ba722964d105d94507eb112/v2/8333b72a29d77f4dbd23b5e71805b2be/G193/M03/1A/18/YYcBAF6QuimAScLRAWxaO2AYrmY025.mp3"
+    },
+    {
+      "name": "第一部 七星鲁王 第21章",
+      "url": "https://webfs.tx.kugou.com/202305311511/b5307d8c97c30e75d08adad2d8bb1487/v2/3766085d290a156d36467a9f2b61dbd0/G217/M07/19/07/GQ4DAF6vQuuAQ_7CAWm7Nnd6RUI438.mp3"
+    },
+    {
+      "name": "第一部 七星鲁王 第22章",
+      "url": "https://webfs.tx.kugou.com/202305311511/cdbb494bb1a07ceb87cbaa6f4c1762fb/v2/83570c5ca723085d786c7d5365f9fc7a/G202/M0A/09/19/Cg4DAF6O8WiAZvBrAWw5NeDIEPI776.mp3"
+    },
+    {
+      "name": "第一部 七星鲁王 第23章",
+      "url": "https://webfs.tx.kugou.com/202305311511/963f7aa7d92c7603a047bfb373ad1776/v2/0b4b594e4cfe5f3afa882b345c7686d2/G230/M01/14/19/xpQEAF81AZSAZ5lzAW0eJv3dR9U816.mp3"
+    },
+    {
+      "name": "第一部 七星鲁王 第24章",
+      "url": "https://webfs.tx.kugou.com/202305311511/2235f867486e63aed3cb87dc0bc50b8f/v2/1078ea62052b4e8858fa98e624eb2259/G215/M09/01/04/t5QEAF6zgQqAE-0uAW0eJsUhW9A905.mp3"
+    },
+    {
+      "name": "第一部 七星鲁王 第25章",
+      "url": "https://webfs.tx.kugou.com/202305311511/cee7bcb38a236fc9c817232922d683f0/v2/911b9c0c236116565a21433268f482cd/G207/M00/1A/1F/r5QEAF6O-fGATjqoAW5G-FhBejc725.mp3"
+    },
+    {
+      "name": "第一部 七星鲁王 第26章",
+      "url": "https://webfs.tx.kugou.com/202305311511/5cbd5615d89fb227024808078cfdb877/v2/dd563d4bd1094e4248856bfaa366ae5b/G209/M07/17/01/cYcBAF6ucPSALBl9AW9MhFc0NYI710.mp3"
+    },
+    {
+      "name": "第一部 七星鲁王 第27章",
+      "url": "https://webfs.tx.kugou.com/202305311511/f97494fd30bf3ae86b1d6586ca2f9cb7/v2/0f2930bb5a809898b6b42a8d9ac96094/G219/M09/03/07/u5QEAF7Fjc6AQFKZAW0-_vJlqRY868.mp3"
+    },
+    {
+      "name": "第一部 七星鲁王 第28章",
+      "url": "https://webfs.tx.kugou.com/202305311511/322ca4d958029d9bf960a3d66a96ca61/v2/b7d0c3af6442572c583adda1d064361a/G236/M0A/1E/11/LA4DAF81HQaAGk_mAWzWgT8ze4A906.mp3"
+    },
+    {
+      "name": "第一部 七星鲁王 第29章",
+      "url": "https://webfs.tx.kugou.com/202305311511/e93688fd9146a8cc66aefee40758b98e/v2/cd57b3423cf6111f558474be97267740/G227/M07/10/05/Iw4DAF81ADKAblxEAWxBvQpVsjU134.mp3"
+    },
+    {
+      "name": "第一部 七星鲁王 第30章",
+      "url": "https://webfs.tx.kugou.com/202305311511/0545085dc0693f9899fbb2d96b57944c/v2/b4796fab640ab0a4718371d9841ae3f1/G221/M0A/17/03/vZQEAF81D4GAOeqEAW60rtYDgwc119.mp3"
+    },
+    {
+      "name": "第一部 七星鲁王 第31章",
+      "url": "https://webfs.tx.kugou.com/202305311511/3ed27b6edf3286bb4e652c1bffa5e519/v2/c3494e3dac4132d383ab62b6f2f692aa/G234/M06/1D/11/Kg4DAF81JIqAM-HkAW04dgwUJUQ531.mp3"
+    },
+    {
+      "name": "第一部 七星鲁王 第32章",
+      "url": "https://webfs.tx.kugou.com/202305311511/6d97623905b61a1575cc4ad5a62185f4/v2/fed71a8a20d510edfda1ad1da2594cab/G215/M08/05/01/Fw4DAF7IEnKAAvGzAW4MhNpBr9I862.mp3"
+    },
+    {
+      "name": "第一部 七星鲁王 第33章",
+      "url": "https://webfs.tx.kugou.com/202305311511/33d2a394a5c8886231a225834b8ced32/v2/cbd828f765fbfecdf3b75c9b01afe9f6/G221/M05/06/0F/fYcBAF81Gj-AFouvAW02o7BcCc8215.mp3"
+    },
+    {
+      "name": "第一部 七星鲁王 第34章",
+      "url": "https://webfs.tx.kugou.com/202305311511/acf91193ebcca17b2ec627633c0d7c77/v2/664b4be394a26a7567c3336091fb2d3f/G233/M0A/09/07/KQ4DAF8088uAY5L8AW8RvU_6yeI913.mp3"
+    },
+    {
+      "name": "第一部 七星鲁王 第35章",
+      "url": "https://webfs.tx.kugou.com/202305311511/1cec537c482e870debdbc88213e7f3a1/v2/565de4cef50713a6b809ebfcd88869ae/G213/M01/09/03/FQ4DAF6yAZ6AEZqZAW6shE68g5c693.mp3"
+    },
+    {
+      "name": "第一部 七星鲁王 第36章",
+      "url": "https://webfs.tx.kugou.com/202305311511/60a9c7c73347392fd32b66f12a84ee92/v2/17e4a1f3ce42b18063c3468d10916ecb/G219/M0A/0B/15/u5QEAF6h1_yAUW-7AWwfdBbW2D4426.mp3"
+    },
+    {
+      "name": "第一部 七星鲁王 第37章",
+      "url": "https://webfs.tx.kugou.com/202305311511/c746fa6594dfaf4cbf90343e2754636c/v2/1f034f96fa0f99a4fbf7111584a02f59/G204/M08/12/11/bIcBAF6O-CmASeKHAWn91Pnxx0o125.mp3"
+    },
+    {
+      "name": "第二部 秦岭神树 第01章",
+      "url": "https://webfs.tx.kugou.com/202305311512/63303c54387df3c0da9f06823e448388/v2/1deddae5a410db03fc71d6ba405d31db/G209/M04/13/0B/EQ4DAF6cD7-AGbdgAWUJxR2dgEc417.mp3"
+    },
+    {
+      "name": "第二部 秦岭神树 第02章",
+      "url": "https://webfs.tx.kugou.com/202305311512/2f0794dc0dd2626b4899dd0c2978eb39/v2/60e929116c6cba6e6a98c63e26a0dab9/KGTX/CLTX001/60e929116c6cba6e6a98c63e26a0dab9.mp3"
+    },
+    {
+      "name": "第二部 秦岭神树 第03章",
+      "url": "https://webfs.tx.kugou.com/202305311512/00671756b13816900135646970b8e626/v2/d824d6a4b7c2c8296d16ef3ce1f6541a/KGTX/CLTX001/d824d6a4b7c2c8296d16ef3ce1f6541a.mp3"
+    },
+    {
+      "name": "第二部 秦岭神树 第04章",
+      "url": "https://webfs.tx.kugou.com/202305311512/3b2388c1b3668eba8c2980bb7789884a/v2/1be0372868c82d2f064de2c6ec8de981/KGTX/CLTX001/1be0372868c82d2f064de2c6ec8de981.mp3"
+    },
+    {
+      "name": "第二部 秦岭神树 第05章",
+      "url": "https://webfs.tx.kugou.com/202305311512/31ac1fc4b52922d98e0e266279689205/v2/3f108ac8b3f84f206410d074b4db4da4/KGTX/CLTX001/3f108ac8b3f84f206410d074b4db4da4.mp3"
+    },
+    {
+      "name": "第二部 秦岭神树 第06章",
+      "url": "https://webfs.tx.kugou.com/202305311512/4cc5481298401ce35b45ce8917074eb4/v2/1ca1fc77afafdcfaf4cc593372104994/KGTX/CLTX001/1ca1fc77afafdcfaf4cc593372104994.mp3"
+    },
+    {
+      "name": "第二部 秦岭神树 第07章",
+      "url": "https://webfs.tx.kugou.com/202305311512/48a87bc5fad17c46b66d3cacad8ce1ce/v2/9ce70467f25740a78b418999fed3881a/KGTX/CLTX001/9ce70467f25740a78b418999fed3881a.mp3"
+    },
+    {
+      "name": "第二部 秦岭神树 第08章",
+      "url": "https://webfs.tx.kugou.com/202305311512/0bf343754186e45783f8c8ccf6f88c76/v2/1c228ca76af456d0c50a3db0fcb20e0d/KGTX/CLTX001/1c228ca76af456d0c50a3db0fcb20e0d.mp3"
+    },
+    {
+      "name": "第二部 秦岭神树 第09章",
+      "url": "https://webfs.tx.kugou.com/202305311512/202f74506a139786799ac0e385f15c3d/v2/e31a9afea72111a7b8c8d53e9c9dca7e/KGTX/CLTX001/e31a9afea72111a7b8c8d53e9c9dca7e.mp3"
+    },
+    {
+      "name": "第二部 秦岭神树 第10章",
+      "url": "https://webfs.tx.kugou.com/202305311512/b89472f49efc960af815a988e2050f1d/v2/96b52b3614fe72e78b4e644647f39b9a/KGTX/CLTX001/96b52b3614fe72e78b4e644647f39b9a.mp3"
+    },
+    {
+      "name": "第二部 秦岭神树 第11章",
+      "url": "https://webfs.tx.kugou.com/202305311512/c1bde571a84c7af40c30aa0c5c345a13/v2/d194a1ae2998fb2224697da5a14b24e6/KGTX/CLTX001/d194a1ae2998fb2224697da5a14b24e6.mp3"
+    },
+    {
+      "name": "第二部 秦岭神树 第12章",
+      "url": "https://webfs.tx.kugou.com/202305311512/e33e248bdfc9124926abaa922c60c5ec/v2/37c61875e6f387c606988822c972f82c/KGTX/CLTX001/37c61875e6f387c606988822c972f82c.mp3"
+    },
+    {
+      "name": "第二部 秦岭神树 第13章",
+      "url": "https://webfs.tx.kugou.com/202305311512/802b1bff8aacbc1c6cd68c4794a1cb70/v2/31175f9c3a139678fb9e8c5a69f6d88d/G221/M01/1B/05/fYcBAF81EQ6ACyo7AVXnSootY3g570.mp3"
+    },
+    {
+      "name": "第二部 秦岭神树 第14章",
+      "url": "https://webfs.tx.kugou.com/202305311512/1a196dba9325fbda70c1b65992f686a3/v2/ae394f359b9d842f7dc3e902ccd28596/KGTX/CLTX001/ae394f359b9d842f7dc3e902ccd28596.mp3"
+    },
+    {
+      "name": "第二部 秦岭神树 第15章",
+      "url": "https://webfs.tx.kugou.com/202305311512/45ad9779a5ea03eda88c28689370a4cf/v2/1aac7e417d2c5250610a2d6b00e611a1/KGTX/CLTX001/1aac7e417d2c5250610a2d6b00e611a1.mp3"
+    },
+    {
+      "name": "第二部 秦岭神树 第16章",
+      "url": "https://webfs.tx.kugou.com/202305311512/70501e0cf5789ee748b09cdb39ba1207/v2/f6dd906234e0160e30407a959cbc0ea4/KGTX/CLTX001/f6dd906234e0160e30407a959cbc0ea4.mp3"
+    },
+    {
+      "name": "第二部 秦岭神树 第17章",
+      "url": "https://webfs.tx.kugou.com/202305311512/5b9df5bde3543fb59b9a47b9fa70e0fd/v2/636dee3a9373ae9b9b7e81c68b5a2f2b/KGTX/CLTX003/636dee3a9373ae9b9b7e81c68b5a2f2b.mp3"
+    },
+    {
+      "name": "第二部 秦岭神树 第18章",
+      "url": "https://webfs.tx.kugou.com/202305311512/6021e557797c816fc7aa1ed860561fbb/v2/4d848e7c3c2f2f906ef8ca000b09a9f1/KGTX/CLTX001/4d848e7c3c2f2f906ef8ca000b09a9f1.mp3"
+    },
+    {
+      "name": "第二部 秦岭神树 第19章",
+      "url": "https://webfs.tx.kugou.com/202305311512/a21ae778b45236b24935ecd50278cd6f/v2/2ee29f78b26b87a4d4774a1263ca001f/KGTX/CLTX001/2ee29f78b26b87a4d4774a1263ca001f.mp3"
+    },
+    {
+      "name": "第二部 秦岭神树 第20章",
+      "url": "https://webfs.tx.kugou.com/202305311512/fcab506600add370b89a6b2a4284d85d/v2/1a6346ed19be21d15938857d863ffcc9/KGTX/CLTX001/1a6346ed19be21d15938857d863ffcc9.mp3"
+    },
+    {
+      "name": "第二部 秦岭神树 第21章",
+      "url": "https://webfs.tx.kugou.com/202305311512/8fdeff4e7b0e0f7f4226c9598085b768/v2/1a409c73647de7a899b441ae7af3f590/KGTX/CLTX001/1a409c73647de7a899b441ae7af3f590.mp3"
+    },
+    {
+      "name": "第二部 秦岭神树 第22章",
+      "url": "https://webfs.tx.kugou.com/202305311512/85c7e948dd3cfe91ef33645d47b3fd4a/v2/48aa177209775491e23218bc9af5f024/KGTX/CLTX001/48aa177209775491e23218bc9af5f024.mp3"
+    },
+    {
+      "name": "第二部 秦岭神树 第23章",
+      "url": "https://webfs.tx.kugou.com/202305311512/be22376bf3f9dd6b3cdb46864b155a09/v2/32126944898a081606978b61a8a8f371/KGTX/CLTX001/32126944898a081606978b61a8a8f371.mp3"
+    },
+    {
+      "name": "第二部 秦岭神树 第24章",
+      "url": "https://webfs.tx.kugou.com/202305311512/314199387c33b457a9e989fcf4446b5e/v2/c09c1e7995631c993779d00802958042/KGTX/CLTX001/c09c1e7995631c993779d00802958042.mp3"
+    },
+    {
+      "name": "第二部 秦岭神树 第25章",
+      "url": "https://webfs.tx.kugou.com/202305311512/d15dbdbce34a4ac1745f6e6ed3cd7c31/v2/a5938789db1d3b780bfa0ded89104c49/KGTX/CLTX001/a5938789db1d3b780bfa0ded89104c49.mp3"
+    },
+    {
+      "name": "第二部 秦岭神树 第26章",
+      "url": "https://webfs.tx.kugou.com/202305311512/d1afef5f47c388034c38946e9531ae16/v2/182aa5acb85aedff3229fffa846626b0/KGTX/CLTX001/182aa5acb85aedff3229fffa846626b0.mp3"
+    },
+    {
+      "name": "第二部 秦岭神树 第27章",
+      "url": "https://webfs.tx.kugou.com/202305311512/94d9c3059cfb140b08657a9b41815dc1/v2/cefeb98ba678ea631d88c3e73cfc0e93/KGTX/CLTX001/cefeb98ba678ea631d88c3e73cfc0e93.mp3"
+    },
+    {
+      "name": "第二部 秦岭神树 第28章",
+      "url": "https://webfs.tx.kugou.com/202305311512/ec5a02f55ae03e5ac3d4867ae51de363/v2/d58b3e668ba001e24d219c51a1bd122d/KGTX/CLTX001/d58b3e668ba001e24d219c51a1bd122d.mp3"
+    },
+    {
+      "name": "第二部 秦岭神树 第29章",
+      "url": "https://webfs.tx.kugou.com/202305311512/c65f26bc365b49c0faa553b8d3f464a9/v2/aa6e2cfbe9fb216b29358c395e21855c/KGTX/CLTX001/aa6e2cfbe9fb216b29358c395e21855c.mp3"
+    },
+    {
+      "name": "第二部 秦岭神树 第30章",
+      "url": "https://webfs.tx.kugou.com/202305311512/58ac082e5f88985edf6be3b8c741eaae/v2/9ec1d1fc306a66c7d28a8c1af6c5fd02/KGTX/CLTX001/9ec1d1fc306a66c7d28a8c1af6c5fd02.mp3"
+    },
+    {
+      "name": "第二部 秦岭神树 第31章",
+      "url": "https://webfs.tx.kugou.com/202305311512/86ef92299b3a500c047968c22da9a1e4/v2/4b922393299040b43c0b1899c3b65e03/KGTX/CLTX001/4b922393299040b43c0b1899c3b65e03.mp3"
+    },
+    {
+      "name": "第二部 秦岭神树 第32章",
+      "url": "https://webfs.tx.kugou.com/202305311512/92852755065fea01d8dbc3af6d4d542f/v2/f834dccbc53eafc24bec63f0f7bc88a2/KGTX/CLTX001/f834dccbc53eafc24bec63f0f7bc88a2.mp3"
+    },
+    {
+      "name": "第二部 秦岭神树 第33章",
+      "url": "https://webfs.tx.kugou.com/202305311512/5e06ce339bd994f5990c8262cd957ca2/v2/f4c34f9ebcc528df9015e75b50088c27/KGTX/CLTX001/f4c34f9ebcc528df9015e75b50088c27.mp3"
+    },
+    {
+      "name": "第二部 秦岭神树 第34章",
+      "url": "https://webfs.tx.kugou.com/202305311512/02dc5bdec84da8b308f62761c87cb0a2/v2/4dc257225cc868c5c6eaaee43c339e48/KGTX/CLTX001/4dc257225cc868c5c6eaaee43c339e48.mp3"
+    },
+    {
+      "name": "第二部 秦岭神树 第35章",
+      "url": "https://webfs.tx.kugou.com/202305311512/3f077f3578bbcd85d1dd9e303c21d3ad/v2/380307d5617a8988416494de2fd7b0ec/G298/M00/54/DD/CpUEAGRknMKAENAoAVgWzqvN1e0876.mp3"
+    },
+    {
+      "name": "第二部 秦岭神树 第36章",
+      "url": "https://webfs.tx.kugou.com/202305311512/c19bda7931f41fd9fe02634c78827d15/v2/4c7a1043295a8a77f7ed901e04bbd7a0/KGTX/CLTX001/4c7a1043295a8a77f7ed901e04bbd7a0.mp3"
+    },
+    {
+      "name": "第二部 秦岭神树 第37章",
+      "url": "https://webfs.tx.kugou.com/202305311512/d29198b4565d515e1eed2a6af5df413d/v2/da5864f2c33c4e42c585e554bd4eaf63/KGTX/CLTX001/da5864f2c33c4e42c585e554bd4eaf63.mp3"
+    },
+    {
+      "name": "第二部 秦岭神树 第38章",
+      "url": "https://webfs.tx.kugou.com/202305311512/beb780f5cf552094c3ede8e561201af7/v2/3298dfbc55943905b3e636ea35dc4153/KGTX/CLTX001/3298dfbc55943905b3e636ea35dc4153.mp3"
+    },
+    {
+      "name": "第二部 秦岭神树 第39章",
+      "url": "https://webfs.tx.kugou.com/202305311512/67c32d2367fe8970f156f536eb6928e0/v2/0b9a4212cc52507a9e17a8b626b41663/KGTX/CLTX001/0b9a4212cc52507a9e17a8b626b41663.mp3"
+    },
+    {
+      "name": "第三部 云顶天宫 第01章",
+      "url": "https://webfs.tx.kugou.com/202305311512/f5b0f46876acde1dd7e30a7b8584035b/v2/a49699fc9b9de78ffae7914b9a21124f/G205/M02/0F/19/DQ4DAF6O-paAPchIAWtc2YV39Tk698.mp3"
+    },
+    {
+      "name": "第三部 云顶天宫 第02章",
+      "url": "https://webfs.tx.kugou.com/202305311512/1d28dbaed6a862b6beb74c9f3599b111/v2/69b9d4f701bf0700c17dc2125eda0d47/KGTX/CLTX001/69b9d4f701bf0700c17dc2125eda0d47.mp3"
+    },
+    {
+      "name": "第三部 云顶天宫 第03章",
+      "url": "https://webfs.tx.kugou.com/202305311512/3d0cd7c2300f5e514608a56442b8ba40/v2/6392cc80e3e6c6ea32b7033217d0fb5d/KGTX/CLTX001/6392cc80e3e6c6ea32b7033217d0fb5d.mp3"
+    },
+    {
+      "name": "第三部 云顶天宫 第04章",
+      "url": "https://webfs.tx.kugou.com/202305311512/5c65c9087275c859a02c4c48f280db4b/v2/d4876a21af45cb24504060927b10c083/G314/M04/51/91/GpUEAGRkl2SAWs-2AVt9lEafgoE045.mp3"
+    },
+    {
+      "name": "第三部 云顶天宫 第05章",
+      "url": "https://webfs.tx.kugou.com/202305311512/b1014373ebd52a986a321c06a28ff6c6/v2/982fd6191db0c3926d0c2c91ed8dc7dd/G204/M01/07/13/DA4DAF6O-YGABaZZAVh44eaYL7E091.mp3"
+    },
+    {
+      "name": "第三部 云顶天宫 第06章",
+      "url": "https://webfs.tx.kugou.com/202305311512/3400a0f35b1f9ef86f847cc042f61ac5/v2/dcf64318d95e77ecaa8f08fcbbf8299e/G225/M03/1A/10/gYcBAF80-YGAFSLgAVjEWgwMSak313.mp3"
+    },
+    {
+      "name": "第三部 云顶天宫 第07章",
+      "url": "https://webfs.tx.kugou.com/202305311512/94640538e4a4969423791afec7bc0080/v2/2d82ed17be1929fea928cf6ec4245460/KGTX/CLTX001/2d82ed17be1929fea928cf6ec4245460.mp3"
+    },
+    {
+      "name": "第三部 云顶天宫 第08章",
+      "url": "https://webfs.tx.kugou.com/202305311512/88006317fd28804c62a43d193c9f45a1/v2/4104cc6c51197393ea4567f459a9348b/KGTX/CLTX001/4104cc6c51197393ea4567f459a9348b.mp3"
+    },
+    {
+      "name": "第三部 云顶天宫 第09章",
+      "url": "https://webfs.tx.kugou.com/202305311512/2653e0bc45acf85b95c077220c1affb7/v2/21aa61dd88ea4dc3539f69ed2d1b6e39/KGTX/CLTX001/21aa61dd88ea4dc3539f69ed2d1b6e39.mp3"
+    },
+    {
+      "name": "第三部 云顶天宫 第10章",
+      "url": "https://webfs.tx.kugou.com/202305311512/16f85aad2ce9b779680792cba75aa33f/v2/10b464c91e1f12cd059904aa6b9a1b38/KGTX/CLTX001/10b464c91e1f12cd059904aa6b9a1b38.mp3"
+    },
+    {
+      "name": "第三部 云顶天宫 第11章",
+      "url": "https://webfs.tx.kugou.com/202305311512/68673f0ba8ac9359d2b0d1e9eec4fa1e/v2/d532d3d40c55af556c8cbc53e7c90437/G202/M06/10/19/qpQEAF6O-fWAAU6uAVqlnZVijiw848.mp3"
+    },
+    {
+      "name": "第三部 云顶天宫 第12章",
+      "url": "https://webfs.tx.kugou.com/202305311512/02c584a07f4c7a486f953354db20ffbd/v2/447d33bf84a96effb2de61e848e540fe/G213/M04/03/08/dYcBAF64AO-ARcfhAVlQw91h2s4024.mp3"
+    },
+    {
+      "name": "第三部 云顶天宫 第13章",
+      "url": "https://webfs.tx.kugou.com/202305311512/537619e47bd3d49f0e71039e92db8f6b/v2/b3acbb084d2d3bac36a50711f8c12809/G210/M02/1F/09/spQEAF6O9BeAf26oAVik9khigbg893.mp3"
+    },
+    {
+      "name": "第三部 云顶天宫 第14章",
+      "url": "https://webfs.tx.kugou.com/202305311512/f43285fa0eb84fae9003a677b7facdd7/v2/e237e37d5b097310320d210c560d7b94/KGTX/CLTX001/e237e37d5b097310320d210c560d7b94.mp3"
+    },
+    {
+      "name": "第三部 云顶天宫 第15章",
+      "url": "https://webfs.tx.kugou.com/202305311512/e065a1f11edc8f6688f975e45bc53810/v2/ecaabfa96c84b46fa7bb22c569891141/G210/M0A/00/03/Eg4DAF6Yeh2AHG-wAVnjs_xZLZ0564.mp3"
+    },
+    {
+      "name": "第三部 云顶天宫 第16章",
+      "url": "https://webfs.tx.kugou.com/202305311512/8012e6a6483185bd4d95cfe014768849/v2/e9fe57b3dbd1c45cc6c7270aa9393958/KGTX/CLTX001/e9fe57b3dbd1c45cc6c7270aa9393958.mp3"
+    },
+    {
+      "name": "第三部 云顶天宫 第17章",
+      "url": "https://webfs.tx.kugou.com/202305311512/4a3c34654d865d2545513aa535d42b7e/v2/49dfb3319a08568f5753c9f068b3b651/KGTX/CLTX001/49dfb3319a08568f5753c9f068b3b651.mp3"
+    },
+    {
+      "name": "第三部 云顶天宫 第18章",
+      "url": "https://webfs.tx.kugou.com/202305311512/df0a6a1bea90f09b1e930eac79a3b19e/v2/069d13749a3bceff51d8f5b83e330664/G222/M04/04/14/vpQEAF81F_eARtL4AVqkWn-jNL0068.mp3"
+    },
+    {
+      "name": "第三部 云顶天宫 第19章",
+      "url": "https://webfs.tx.kugou.com/202305311512/dc78fafa40c4cebb556e66cbf6750840/v2/e03bf793bc25ee84f134702b85d41871/G233/M02/1A/00/iYcBAF81ArmAHCMwAVp-zTobnQY145.mp3"
+    },
+    {
+      "name": "第三部 云顶天宫 第20章",
+      "url": "https://webfs.tx.kugou.com/202305311512/ccc9567ca26f377dddf59674f9cb8aaf/v2/bd53228c89ef7f89eb37f24a776837da/G193/M01/1B/01/oZQEAF6O-n2ARbfZAVsoOnh7PWE060.mp3"
+    },
+    {
+      "name": "第三部 云顶天宫 第21章",
+      "url": "https://webfs.tx.kugou.com/202305311512/9e3ca655bfe2c1e79205d6d62780d6cf/v2/645cc4fd29832f6a5b72e16e8200f63f/G199/M01/16/17/Z4cBAF6O8H6ATf5HAVnjVNpqkdU683.mp3"
+    },
+    {
+      "name": "第三部 云顶天宫 第22章",
+      "url": "https://webfs.tx.kugou.com/202305311512/ec0d3ecf174bdfaef989872793f7b46b/v2/6fa03f7690ded7216ea10a2cbfe81ab7/G197/M00/0D/17/BQ4DAF6O9QuAGZ8iAVp35pep-K8877.mp3"
+    },
+    {
+      "name": "第三部 云顶天宫 第23章",
+      "url": "https://webfs.tx.kugou.com/202305311512/ffcb0af38f8b25e43520121227b5fa3a/v2/f2cb9f5561322b4163bb25c75ea0adfd/G206/M03/0B/0F/rpQEAF6O-uWAdN5FAVq0T77himc374.mp3"
+    },
+    {
+      "name": "第三部 云顶天宫 第24章",
+      "url": "https://webfs.tx.kugou.com/202305311512/e696d8a3c58a64db68086eed82364693/v2/33d5c5b92ed5174a61fe8d1322581a60/G212/M09/0B/09/FA4DAF6O-riAUvvWAVoD-wDU8R8494.mp3"
+    },
+    {
+      "name": "第三部 云顶天宫 第25章",
+      "url": "https://webfs.tx.kugou.com/202305311512/780c4f9efe386e0c565b91cfd2b3e7ea/v2/2226b364511f8a36a950437fd0b9657a/G227/M00/17/05/w5QEAF80-z6AKPcgAVnyZdo-9yg291.mp3"
+    },
+    {
+      "name": "第三部 云顶天宫 第26章",
+      "url": "https://webfs.tx.kugou.com/202305311512/d8fee7c6aa8db17e398ef42208204543/v2/309c0e8154079f188107b93c583b8c3d/KGTX/CLTX001/309c0e8154079f188107b93c583b8c3d.mp3"
+    },
+    {
+      "name": "第三部 云顶天宫 第27章",
+      "url": "https://webfs.tx.kugou.com/202305311512/d8d47ba1b8283e5b221351a2989a848a/v2/bb42cfc015730a1d30b9036754df7e8d/KGTX/CLTX001/bb42cfc015730a1d30b9036754df7e8d.mp3"
+    },
+    {
+      "name": "第三部 云顶天宫 第28章",
+      "url": "https://webfs.tx.kugou.com/202305311512/59ac404f80a952fdab0f9e79f4ff477d/v2/a7156f1abc6893faf5b2eeff46126718/KGTX/CLTX001/a7156f1abc6893faf5b2eeff46126718.mp3"
+    },
+    {
+      "name": "第三部 云顶天宫 第29章",
+      "url": "https://webfs.tx.kugou.com/202305311512/f8dd0df55070f87ee1bd6a1578a9321c/v2/391ec0009a6f31042f81c50f688432ac/KGTX/CLTX001/391ec0009a6f31042f81c50f688432ac.mp3"
+    },
+    {
+      "name": "第三部 云顶天宫 第30章",
+      "url": "https://webfs.tx.kugou.com/202305311512/c6b32517f46f30fa940a280dfd295793/v2/62cf3fbf3dad45dc5cbc12d0a30e4482/KGTX/CLTX001/62cf3fbf3dad45dc5cbc12d0a30e4482.mp3"
+    },
+    {
+      "name": "第三部 云顶天宫 第31章",
+      "url": "https://webfs.tx.kugou.com/202305311512/d49832d37d3a93d79f4c7d2f5bc9bae0/v2/657b10e5d4db2960236b734dc6eeae44/KGTX/CLTX001/657b10e5d4db2960236b734dc6eeae44.mp3"
+    },
+    {
+      "name": "第三部 云顶天宫 第32章",
+      "url": "https://webfs.tx.kugou.com/202305311512/6a4c87e32321c767e16e7bea062def7d/v2/fca1788d478862a74ad4ae4af7b2d686/KGTX/CLTX001/fca1788d478862a74ad4ae4af7b2d686.mp3"
+    },
+    {
+      "name": "第三部 云顶天宫 第33章",
+      "url": "https://webfs.tx.kugou.com/202305311512/568a3245c0efab3e5da8c2663fb898a5/v2/34278f128352774e38957a5d32d51c58/KGTX/CLTX001/34278f128352774e38957a5d32d51c58.mp3"
+    },
+    {
+      "name": "第三部 云顶天宫 第34章",
+      "url": "https://webfs.tx.kugou.com/202305311512/1b9f03e2e60d885d6f13dc2f90b2e461/v2/dc5511a90ccaf87fed8f133bec46ee3e/KGTX/CLTX001/dc5511a90ccaf87fed8f133bec46ee3e.mp3"
+    },
+    {
+      "name": "第四部 蛇沼鬼城 第01章",
+      "url": "https://webfs.tx.kugou.com/202305311512/eaf96c70146224cd13f3558725283852/v2/d6910a0041945b5caabebcef933ca858/G214/M05/06/09/docBAF64mUeAbQKhAWbchPm_LfI960.mp3"
+    },
+    {
+      "name": "第四部 蛇沼鬼城 第02章",
+      "url": "https://webfs.tx.kugou.com/202305311512/956d9b60a9e9511eab8bd52247abf1be/v2/c5a7baea182a3d85a52eaf6c83596a75/G227/M01/14/10/w5QEAF8090eAFBWhAVsRvcq0cBM630.mp3"
+    },
+    {
+      "name": "第四部 蛇沼鬼城 第03章",
+      "url": "https://webfs.tx.kugou.com/202305311512/26eaa17ad6e5bf6647089181c905b361/v2/4f8000924097259001b4d6440590a062/G234/M06/15/17/ypQEAF80-auAR3rVAVxWo6EhOB4673.mp3"
+    },
+    {
+      "name": "第四部 蛇沼鬼城 第04章",
+      "url": "https://webfs.tx.kugou.com/202305311512/ff69facd38647b234eccaf9dbf7abf95/v2/2b0d759a406892be65956265d635c676/G211/M0B/1D/08/c4cBAF6O-WKAENthAVuFSat6JAA708.mp3"
+    },
+    {
+      "name": "第四部 蛇沼鬼城 第05章",
+      "url": "https://webfs.tx.kugou.com/202305311512/fae373c5db2729362968c6088e0a77d3/v2/075f53bd97193911ef99fe7dc230a8ce/G229/M00/15/1F/xZQEAF7a_vmAX0EaAVqAbwuBdVs980.mp3"
+    },
+    {
+      "name": "第四部 蛇沼鬼城 第06章",
+      "url": "https://webfs.tx.kugou.com/202305311512/89687cbf1f133e8605867bac4b78ee52/v2/c24b861ba1c3e0ed11f980e1dbae970b/G227/M08/00/18/w5QEAF81EwaAJL9mAVsdK1kAK8o692.mp3"
+    },
+    {
+      "name": "第四部 蛇沼鬼城 第07章",
+      "url": "https://webfs.tx.kugou.com/202305311512/aad24fd0973d20a715273f5c25a28d90/v2/016c139e73ac90da42672eaeba6874c1/G211/M00/10/01/c4cBAF6vVC-AMPxyAVrDXztL0Rc275.mp3"
+    },
+    {
+      "name": "第四部 蛇沼鬼城 第08章",
+      "url": "https://webfs.tx.kugou.com/202305311512/62009aeb4d5d99a3fc33b38bbdd59263/v2/89da64794b171acabdd625e9698a9a54/G235/M09/1D/04/i4cBAF81ES-AfXfjAVm64i6ysTY606.mp3"
+    },
+    {
+      "name": "第四部 蛇沼鬼城 第09章",
+      "url": "https://webfs.tx.kugou.com/202305311512/5c09197154116d7bfc5b299b50d6f1d2/v2/15c1ad426f50367bc02c2480acc84cb0/G227/M03/1D/01/w5QEAF81E_OABaKgAVoeecKaglo121.mp3"
+    },
+    {
+      "name": "第四部 蛇沼鬼城 第10章",
+      "url": "https://webfs.tx.kugou.com/202305311512/e8d71be3fefae05117bb9d0a57dba993/v2/c7aef21959e4cb059bdaa87eb2dec437/G201/M06/17/1F/aYcBAF6O9T2AMif1AVpKLwkmAfA618.mp3"
+    },
+    {
+      "name": "第四部 蛇沼鬼城 第11章",
+      "url": "https://webfs.tx.kugou.com/202305311512/242943c8eed8ba3a076144732c76b48e/v2/23b2d522f824cfc72f2e7f894fb49ed1/G213/M08/01/19/FQ4DAF6u8omABQeqAVobNmP9enQ086.mp3"
+    },
+    {
+      "name": "第四部 蛇沼鬼城 第12章",
+      "url": "https://webfs.tx.kugou.com/202305311512/c290652b1e30833e2b9e79605a60b087/v2/c6e472792f25c2a8fcd0732e79e4ca1b/G224/M02/0E/0B/gIcBAF81G-uAU6kVAVqL3XbZbn8850.mp3"
+    },
+    {
+      "name": "第四部 蛇沼鬼城 第13章",
+      "url": "https://webfs.tx.kugou.com/202305311512/de9349ab527bf2c6d239d426397da19c/v2/a712d8e16745533dbcc6e88d61cf2ee9/G226/M01/0C/18/Ig4DAF81KmaAW_wpAVohvV5qoaE177.mp3"
+    },
+    {
+      "name": "第四部 蛇沼鬼城 第14章",
+      "url": "https://webfs.tx.kugou.com/202305311512/013a5a161126502856553c40a024e851/v2/0a66491c7673162b7027426eab988f05/G192/M00/16/03/AA4DAF6O-LuAY-ePAVuDp5Z76K8026.mp3"
+    },
+    {
+      "name": "第四部 蛇沼鬼城 第15章",
+      "url": "https://webfs.tx.kugou.com/202305311512/1fb362c3f96a66d6d101bb1cbbb2dd1e/v2/5996d40c9f8d3a32382aa3508f961ec1/G208/M0B/13/0B/EA4DAF6wTw6AA-y8AVv0rojO1mE386.mp3"
+    },
+    {
+      "name": "第四部 蛇沼鬼城 第16章",
+      "url": "https://webfs.tx.kugou.com/202305311512/77ba187b654cf948dbb7227ce2a0a251/v2/124af1a169be7e0f83918d84f650c276/G207/M0B/12/1D/Dw4DAF6iqr2AHY4RAVoeeUjjKRQ522.mp3"
+    },
+    {
+      "name": "第四部 蛇沼鬼城 第17章",
+      "url": "https://webfs.tx.kugou.com/202305311512/e252c1a4c4ece51dfca24590abe16052/v2/0c5a17cd9d1bb0c382306e542a9f8a57/G208/M08/1D/15/sJQEAF6dpYKAbb_fAVvD5K6Ivlo049.mp3"
+    },
+    {
+      "name": "第四部 蛇沼鬼城 第18章",
+      "url": "https://webfs.tx.kugou.com/202305311512/736fce5410f1517b8d6972484bd25653/v2/16db5e1dd1e2c90fc920148cc87be8fd/G194/M0B/1A/08/YocBAF6O9aCANu3pAVlgt2AM9fE326.mp3"
+    },
+    {
+      "name": "第四部 蛇沼鬼城 第19章",
+      "url": "https://webfs.tx.kugou.com/202305311512/d8c37937b66fde8e5fba080e0db3b92c/v2/5146eb0750e7c167af3805f02f6b2b26/KGTX/CLTX001/5146eb0750e7c167af3805f02f6b2b26.mp3"
+    },
+    {
+      "name": "第四部 蛇沼鬼城 第20章",
+      "url": "https://webfs.tx.kugou.com/202305311512/c19f4b4985644889cbe4d97d14e2cd1b/v2/feb32a9ada28935047ebb22ec9ff1ba2/G213/M05/00/01/FQ4DAF7I9MiAKB7DAVxH8rry1tI931.mp3"
+    },
+    {
+      "name": "第四部 蛇沼鬼城 第21章",
+      "url": "https://webfs.tx.kugou.com/202305311512/9e8e2296783ee28724a5ac094acadd89/v2/5aed4209c17a25cedf4cafa80df152ee/G211/M05/15/15/Ew4DAF6c1D-AXWNcAVpx7svGCmk797.mp3"
+    },
+    {
+      "name": "第四部 蛇沼鬼城 第22章",
+      "url": "https://webfs.tx.kugou.com/202305311512/3424b792cf634500f9525b0cc4e0b8ca/v2/4a35348ebd1c9facb3e0d58d91da1e7c/G196/M04/1D/17/BA4DAF6O_PqACsXOAVgW69H0E1E693.mp3"
+    },
+    {
+      "name": "第四部 蛇沼鬼城 第23章",
+      "url": "https://webfs.tx.kugou.com/202305311512/5e1e3cfcbf4f9d204c1a1e67c00b8bff/v2/1e52376ddc5716bb0d9093e4484d4c21/G233/M07/1D/0B/iYcBAF81Do2AFlAuAVuI7HnCmwY705.mp3"
+    },
+    {
+      "name": "第四部 蛇沼鬼城 第24章",
+      "url": "https://webfs.tx.kugou.com/202305311512/78a60d5e84c5683ce1bbf0fa0bd5346b/v2/94fc7040297d561b0eee7f9ce1d44422/KGTX/CLTX001/94fc7040297d561b0eee7f9ce1d44422.mp3"
+    },
+    {
+      "name": "第四部 蛇沼鬼城 第25章",
+      "url": "https://webfs.tx.kugou.com/202305311512/384770f1007199132188bc26a64ae164/v2/b25f51163a9ffee2c28729e6db4b8906/G201/M02/16/08/qZQEAF6O8ByABpEoAVn4jfpLa0o329.mp3"
+    },
+    {
+      "name": "第四部 蛇沼鬼城 第26章",
+      "url": "https://webfs.tx.kugou.com/202305311512/bec5f57fc1513d9d7e5513da405b3756/v2/7e9fdb5ff52d31e3ed5d4427f1d2c2bc/G192/M03/1E/1F/AA4DAF6O9W-AdBjmAVo4Opf3hNo075.mp3"
+    },
+    {
+      "name": "第四部 蛇沼鬼城 第27章",
+      "url": "https://webfs.tx.kugou.com/202305311512/8b2fe4bfc62698588abb2ebb6cf30d74/v2/a369222973bc2cf40fe6aa1ab1b8c92a/G204/M0B/1C/13/DA4DAF6O9qiAbQSiAVoSrQfO_4M288.mp3"
+    },
+    {
+      "name": "第四部 蛇沼鬼城 第28章",
+      "url": "https://webfs.tx.kugou.com/202305311513/05f64c47912e66d64a297599cd9f1ccc/v2/cf56d29ac4d481bc6b95c188478c9d2c/G207/M04/01/09/Dw4DAF6O8W6ARMYTAVk-bubp37E066.mp3"
+    },
+    {
+      "name": "第四部 蛇沼鬼城 第29章",
+      "url": "https://webfs.tx.kugou.com/202305311513/c6e6a1fa67b464acf49f345c7bfd5172/v2/8c17fa1c706fa8f23ccb7a908cefe75d/G210/M09/17/0B/Eg4DAF6O8F2AK8O3AVknkypH_BI247.mp3"
+    },
+    {
+      "name": "第四部 蛇沼鬼城 第30章",
+      "url": "https://webfs.tx.kugou.com/202305311513/73feda216049ddb7c712175d76ecd786/v2/a595d25e91deed63a7cec72ce6313619/G211/M09/05/18/s5QEAF6dpZKAXPenAVo1hqP1DNo947.mp3"
+    },
+    {
+      "name": "第四部 蛇沼鬼城 第31章",
+      "url": "https://webfs.tx.kugou.com/202305311513/2babe40e9e506ced9643a3c20a8e2061/v2/624d7961400d7fa5ea6da617ba8b81dc/G226/M00/00/19/gocBAF81F2OAJWVkAVqAb9MRhFw410.mp3"
+    },
+    {
+      "name": "第四部 蛇沼鬼城 第32章",
+      "url": "https://webfs.tx.kugou.com/202305311513/50a282a91908c44afee36f1ffd9bcfad/v2/d2b04c2763b95eb574c79aa8660b0c29/G229/M09/0F/0D/xZQEAF81KRCAXFXbAVvXSkUg4eE640.mp3"
+    },
+    {
+      "name": "第四部 蛇沼鬼城 第33章",
+      "url": "https://webfs.tx.kugou.com/202305311513/6774f24fb388e7427957008ecafcdffc/v2/42bcadb37558348a5436cc8f6e83692f/KGTX/CLTX001/42bcadb37558348a5436cc8f6e83692f.mp3"
+    },
+    {
+      "name": "第四部 蛇沼鬼城 第34章",
+      "url": "https://webfs.tx.kugou.com/202305311513/1407045302a9f846bad47e7ae5670562/v2/251ba26e731773eb166cfe1e7c2a5ca4/G204/M03/0F/14/rJQEAF6O_DWAEU0IAXO3k8QcmPQ910.mp3"
+    },
+    {
+      "name": "第五部 谜海归巢 第01章",
+      "url": "https://webfs.tx.kugou.com/202305311513/ad5cd498ceb777be2742d3ee1d46748c/v2/855f615bf36041caaf80cfc7195536f8/G120/M0A/07/00/uA0DAFxPu5uALk4pAWamzmlg88M754.mp3"
+    },
+    {
+      "name": "第五部 谜海归巢 第02章",
+      "url": "https://webfs.tx.kugou.com/202305311513/b2dcace7d8ee6e0da1ca71cb2c10e7e5/v2/18cbd75a7a2803d4bd989e8b0458a71c/G220/M0A/07/01/fIcBAF81DlGAZ1t3AW7-JlnTkk4657.mp3"
+    },
+    {
+      "name": "第五部 谜海归巢 第03章",
+      "url": "https://webfs.tx.kugou.com/202305311513/056fd5e8141391fac7da4171e94370f3/v2/0136191099aaa5e47c6b62bcd6969d16/KGTX/CLTX001/0136191099aaa5e47c6b62bcd6969d16.mp3"
+    },
+    {
+      "name": "第五部 谜海归巢 第04章",
+      "url": "https://webfs.tx.kugou.com/202305311513/a28e82762672cc7f3246471323df65e5/v2/98877adf17e50ed748a221bc5153d66a/G227/M05/17/19/g4cBAF809LeAb6yDAWtDDBUljAs627.mp3"
+    },
+    {
+      "name": "第五部 谜海归巢 第05章",
+      "url": "https://webfs.tx.kugou.com/202305311513/f4e79525cded3c41cffcecde2345c741/v2/b7b3fc411d213c176dba5eafc1cf48eb/KGTX/CLTX003/b7b3fc411d213c176dba5eafc1cf48eb.mp3"
+    },
+    {
+      "name": "第五部 谜海归巢 第06章",
+      "url": "https://webfs.tx.kugou.com/202305311513/404e34e243b547373778bb0f668af7ce/v2/1cdb9782f6ec2bb30e1363cc7bca63e3/KGTX/CLTX001/1cdb9782f6ec2bb30e1363cc7bca63e3.mp3"
+    },
+    {
+      "name": "第五部 谜海归巢 第07章",
+      "url": "https://webfs.tx.kugou.com/202305311513/43e473e30464ca2d500444800bdd2c77/v2/461d03fd7fa3a087c162583eca705eda/KGTX/CLTX001/461d03fd7fa3a087c162583eca705eda.mp3"
+    },
+    {
+      "name": "第五部 谜海归巢 第08章",
+      "url": "https://webfs.tx.kugou.com/202305311513/cff47001d3cd344d62c4dbd1654283ca/v2/8ba0848d1d5ca68d55013a1d1c795c3f/KGTX/CLTX001/8ba0848d1d5ca68d55013a1d1c795c3f.mp3"
+    },
+    {
+      "name": "第五部 谜海归巢 第09章",
+      "url": "https://webfs.tx.kugou.com/202305311513/42dec8d56909256cc7b32f825ea773fc/v2/048deb79a8bc535c87a1c50c867dc974/KGTX/CLTX001/048deb79a8bc535c87a1c50c867dc974.mp3"
+    },
+    {
+      "name": "第五部 谜海归巢 第10章",
+      "url": "https://webfs.tx.kugou.com/202305311513/b15738837b42d32cd006b2bcb599108d/v2/928ab30d3b08ee7cb41be6180c852206/KGTX/CLTX001/928ab30d3b08ee7cb41be6180c852206.mp3"
+    },
+    {
+      "name": "第五部 谜海归巢 第11章",
+      "url": "https://webfs.tx.kugou.com/202305311513/28fbf881e6e5695d97e97d202862459c/v2/9ab1ea06f3270b7df21cc7206acd3d81/KGTX/CLTX001/9ab1ea06f3270b7df21cc7206acd3d81.mp3"
+    },
+    {
+      "name": "第五部 谜海归巢 第12章",
+      "url": "https://webfs.tx.kugou.com/202305311513/97d7be0ad610d3fd7294ad2a9c5d828a/v2/086289be1113e8f54150d18dd5a46da0/KGTX/CLTX001/086289be1113e8f54150d18dd5a46da0.mp3"
+    },
+    {
+      "name": "第五部 谜海归巢 第13章",
+      "url": "https://webfs.tx.kugou.com/202305311513/599f9238ae68f5b0e6dfed271e49e2e9/v2/ac785e52d95b75044ddf16154992b48b/KGTX/CLTX001/ac785e52d95b75044ddf16154992b48b.mp3"
+    },
+    {
+      "name": "第五部 谜海归巢 第14章",
+      "url": "https://webfs.tx.kugou.com/202305311513/d8c8103f71fd79d924f5ee12aea2e53f/v2/4180a16835603ab3f7425be03712940a/KGTX/CLTX001/4180a16835603ab3f7425be03712940a.mp3"
+    },
+    {
+      "name": "第五部 谜海归巢 第15章",
+      "url": "https://webfs.tx.kugou.com/202305311513/cecfd2ed9e58eea05527b930ea7e4850/v2/157bdb3d1f2ab414e7cfa0c207c37623/G223/M05/1D/08/Hw4DAF809SKAZYsnAWvueRw1v-g430.mp3"
+    },
+    {
+      "name": "第五部 谜海归巢 第16章",
+      "url": "https://webfs.tx.kugou.com/202305311513/da11988d6cfbc57264b713b1f48475e1/v2/add2e8c43304f766ac15a717f058ac49/G221/M08/08/05/fYcBAF7pv--AAqT1AWnVVV1eaIw138.mp3"
+    },
+    {
+      "name": "第五部 谜海归巢 第17章",
+      "url": "https://webfs.tx.kugou.com/202305311513/3c9b2e83dcb61f72e1a11afcbd1d4bdf/v2/21a7528ad45929a2fa89422141fbcc79/KGTX/CLTX001/21a7528ad45929a2fa89422141fbcc79.mp3"
+    },
+    {
+      "name": "第五部 谜海归巢 第18章",
+      "url": "https://webfs.tx.kugou.com/202305311513/f686753b94321bbf2eb7f7af013451bf/v2/bab7916aea88ce437ac46f87b10ccf8f/KGTX/CLTX001/bab7916aea88ce437ac46f87b10ccf8f.mp3"
+    },
+    {
+      "name": "第五部 谜海归巢 第19章",
+      "url": "https://webfs.tx.kugou.com/202305311513/63b06b650c9fc12e81c484f6b702fc8b/v2/cdf26267856f55690026b71147f7c8d5/G227/M05/15/1B/w5QEAF81JLWAOWrvAW2VVfS_oU4900.mp3"
+    },
+    {
+      "name": "第五部 谜海归巢 第20章",
+      "url": "https://webfs.tx.kugou.com/202305311513/22c3ab9bb86cb37444f252161b6fdd9a/v2/1516a91e1d59f21f4d0514835ee74b6b/KGTX/CLTX001/1516a91e1d59f21f4d0514835ee74b6b.mp3"
+    },
+    {
+      "name": "第五部 谜海归巢 第21章",
+      "url": "https://webfs.tx.kugou.com/202305311513/a1f8c1273df1c20fa6d04e3af93c5590/v2/15a7ad3f21f6b05c1aebe2abc751a845/KGTX/CLTX001/15a7ad3f21f6b05c1aebe2abc751a845.mp3"
+    },
+    {
+      "name": "第五部 谜海归巢 第22章",
+      "url": "https://webfs.tx.kugou.com/202305311513/8199de14fc3bb89582273b6173baa353/v2/93486401f16e59223d938097c278fc38/KGTX/CLTX001/93486401f16e59223d938097c278fc38.mp3"
+    },
+    {
+      "name": "第五部 谜海归巢 第23章",
+      "url": "https://webfs.tx.kugou.com/202305311513/d9e540bc53bf83a3440c2504ed24abc7/v2/cd2b022da8d0af8590be55f3f2e18bf3/KGTX/CLTX001/cd2b022da8d0af8590be55f3f2e18bf3.mp3"
+    },
+    {
+      "name": "第五部 谜海归巢 第24章",
+      "url": "https://webfs.tx.kugou.com/202305311513/71ff2378b9957664f3261d401cea23c8/v2/75067c0c07030471a14bd66c7542e94e/KGTX/CLTX001/75067c0c07030471a14bd66c7542e94e.mp3"
+    },
+    {
+      "name": "第五部 谜海归巢 第25章",
+      "url": "https://webfs.tx.kugou.com/202305311513/3e8d5ee74df3b4194904f69289822ef2/v2/96db6c5e494cc6b01883ee70a9eca4fb/KGTX/CLTX001/96db6c5e494cc6b01883ee70a9eca4fb.mp3"
+    },
+    {
+      "name": "第五部 谜海归巢 第26章",
+      "url": "https://webfs.tx.kugou.com/202305311513/a0f8d0eec0b76a7002144b23f7470d4b/v2/425744be3bb732d5f1e5f9be7e77aca7/KGTX/CLTX001/425744be3bb732d5f1e5f9be7e77aca7.mp3"
+    },
+    {
+      "name": "第五部 谜海归巢 第27章",
+      "url": "https://webfs.tx.kugou.com/202305311513/23378f3cad87ac46eb9ccb7cc7ef50ba/v2/f5f53b9cfbf1438523b8515692cf41ed/KGTX/CLTX003/f5f53b9cfbf1438523b8515692cf41ed.mp3"
+    },
+    {
+      "name": "第五部 谜海归巢 第28章",
+      "url": "https://webfs.tx.kugou.com/202305311513/c6aaf4212255882b28d12d617745740a/v2/9d5a30d00e72ca2d0db2deafbf1e0d0d/G233/M03/10/07/yZQEAF80-WOAQWRlAW6VqJK6Aic239.mp3"
+    },
+    {
+      "name": "第五部 谜海归巢 第29章",
+      "url": "https://webfs.tx.kugou.com/202305311513/0da60e55ec1816b97d8809a1462049dd/v2/d18eb55309a064f41af75654c250fa39/G221/M0B/1A/13/vZQEAF809d-AFTo7AW2Bvbxbauc568.mp3"
+    },
+    {
+      "name": "第五部 谜海归巢 第30章",
+      "url": "https://webfs.tx.kugou.com/202305311513/bf4ed8cc377169770e3f9b92f55c063d/v2/817617df712ae4eea24c6180148fb5d2/G221/M08/13/11/vZQEAF81E7yAOyLmAW7J59Af-ME136.mp3"
+    },
+    {
+      "name": "第五部 谜海归巢 第31章",
+      "url": "https://webfs.tx.kugou.com/202305311513/716737b5a256e58f30b8c866ccfe65f2/v2/e28abf9378e709ab35895fb06754c372/KGTX/CLTX003/e28abf9378e709ab35895fb06754c372.mp3"
+    },
+    {
+      "name": "第五部 谜海归巢 第32章",
+      "url": "https://webfs.tx.kugou.com/202305311513/9391b24e2ed9f3c3d3cc00c859632f90/v2/9c9f84ef943f2f921a7f3f5242902f58/KGTX/CLTX001/9c9f84ef943f2f921a7f3f5242902f58.mp3"
+    },
+    {
+      "name": "第五部 谜海归巢 第33章",
+      "url": "https://webfs.tx.kugou.com/202305311513/c37edd48e4f5fbcc9067d795143a499a/v2/9c96bff2eae378be6a5ee4825cd87c5c/KGTX/CLTX001/9c96bff2eae378be6a5ee4825cd87c5c.mp3"
+    },
+    {
+      "name": "第五部 谜海归巢 第34章",
+      "url": "https://webfs.tx.kugou.com/202305311513/508435ae1f43a44d93935cbe924e43aa/v2/1f575ae41ceaccb346b49ef93ecc99e6/KGTX/CLTX001/1f575ae41ceaccb346b49ef93ecc99e6.mp3"
+    },
+    {
+      "name": "第五部 谜海归巢 第35章",
+      "url": "https://webfs.tx.kugou.com/202305311513/ebfe29c4cd93ca900836cb30a57523dc/v2/ff422281244b6af2cd0b8c23d610d9dc/KGTX/CLTX001/ff422281244b6af2cd0b8c23d610d9dc.mp3"
+    },
+    {
+      "name": "第五部 谜海归巢 第36章",
+      "url": "https://webfs.tx.kugou.com/202305311513/891a3cc045b88ec986947597d9988986/v2/51976ba70ffb61c2020d24d77bf3bae3/G207/M04/0E/13/Dw4DAF6u0EmAFhEMAWiFMnn7q9k760.mp3"
+    },
+    {
+      "name": "第五部 谜海归巢 第37章",
+      "url": "https://webfs.tx.kugou.com/202305311513/848235708f404f92c4820a077c0731e9/v2/322aec50f6dcb671922037a99c6382f5/KGTX/CLTX001/322aec50f6dcb671922037a99c6382f5.mp3"
+    },
+    {
+      "name": "第五部 谜海归巢 第38章",
+      "url": "https://webfs.tx.kugou.com/202305311513/bc09f80694ea20a17c07a83a97ebb31d/v2/7249438f1d801ea6c02606fde1bb1b15/KGTX/CLTX001/7249438f1d801ea6c02606fde1bb1b15.mp3"
+    },
+    {
+      "name": "第六部 阴山古楼 第01章",
+      "url": "https://webfs.tx.kugou.com/202305311513/21d54cef8ba5ad6eb138b0f1f904d023/v2/85ae81c4b1351cf098f80e01392a8b48/KGTX/CLTX001/85ae81c4b1351cf098f80e01392a8b48.mp3"
+    },
+    {
+      "name": "第六部 阴山古楼 第02章",
+      "url": "https://webfs.tx.kugou.com/202305311513/4e56b658991447ca490bf34fd2d9dc55/v2/dc97e2333fd8e3c7630322d60b95f9b2/KGTX/CLTX001/dc97e2333fd8e3c7630322d60b95f9b2.mp3"
+    },
+    {
+      "name": "第六部 阴山古楼 第03章",
+      "url": "https://webfs.tx.kugou.com/202305311513/a730ba6510cab7c8f455db4f67bef231/v2/b3c88e7be5fcf9ec6c2d5661f429ed54/KGTX/CLTX001/b3c88e7be5fcf9ec6c2d5661f429ed54.mp3"
+    },
+    {
+      "name": "第六部 阴山古楼 第04章",
+      "url": "https://webfs.tx.kugou.com/202305311513/c3a76cd4aa01f9de9fe6e0b4c03bece9/v2/d3a979bacafd9c6bfb25294cd5db60e5/KGTX/CLTX001/d3a979bacafd9c6bfb25294cd5db60e5.mp3"
+    },
+    {
+      "name": "第六部 阴山古楼 第05章",
+      "url": "https://webfs.tx.kugou.com/202305311513/5763f1100ae3653c827c829e00e9290f/v2/586fea2098080ba06fb9b56646a439ea/KGTX/CLTX001/586fea2098080ba06fb9b56646a439ea.mp3"
+    },
+    {
+      "name": "第六部 阴山古楼 第06章",
+      "url": "https://webfs.tx.kugou.com/202305311513/6eb60e59183f53502b79b7594b2ec760/v2/b65e175aeac7e1a6c33981c8c3851375/KGTX/CLTX001/b65e175aeac7e1a6c33981c8c3851375.mp3"
+    },
+    {
+      "name": "第六部 阴山古楼 第07章",
+      "url": "https://webfs.tx.kugou.com/202305311513/e1fb364c07a878b70faae9848ef15c8f/v2/4fc35767bb178c3765b991d25da8bacb/KGTX/CLTX001/4fc35767bb178c3765b991d25da8bacb.mp3"
+    },
+    {
+      "name": "第六部 阴山古楼 第08章",
+      "url": "https://webfs.tx.kugou.com/202305311513/46f40ccae73909a79b4543a96543e702/v2/d9e21a318bc6ea84f49fc54e995bc6de/KGTX/CLTX001/d9e21a318bc6ea84f49fc54e995bc6de.mp3"
+    },
+    {
+      "name": "第六部 阴山古楼 第09章",
+      "url": "https://webfs.tx.kugou.com/202305311513/2ac6b638230970c015904fbb5971c3c4/v2/7d2e53e4aa20be3d248eefb603a73b14/KGTX/CLTX001/7d2e53e4aa20be3d248eefb603a73b14.mp3"
+    },
+    {
+      "name": "第六部 阴山古楼 第10章",
+      "url": "https://webfs.tx.kugou.com/202305311513/c19befd08b55ff82d8670d07eb3bcef8/v2/c43ba5f5da0cabaf0a5dc8e99a5fe0ac/KGTX/CLTX001/c43ba5f5da0cabaf0a5dc8e99a5fe0ac.mp3"
+    },
+    {
+      "name": "第六部 阴山古楼 第11章",
+      "url": "https://webfs.tx.kugou.com/202305311513/56642d337a9995850aadd7a4272971f5/v2/b9df72e52d8d63e4e143a58d83bd0da1/KGTX/CLTX003/b9df72e52d8d63e4e143a58d83bd0da1.mp3"
+    },
+    {
+      "name": "第六部 阴山古楼 第12章",
+      "url": "https://webfs.tx.kugou.com/202305311513/826492d091364914623db20343a35bbd/v2/ba66e89c608a147e5b563e4ba677bd86/KGTX/CLTX001/ba66e89c608a147e5b563e4ba677bd86.mp3"
+    },
+    {
+      "name": "第六部 阴山古楼 第13章",
+      "url": "https://webfs.tx.kugou.com/202305311513/15c1a8a206310b340427230feba4c0ed/v2/d47ff2f4cc3b2f115dc3f7516ee55a12/KGTX/CLTX001/d47ff2f4cc3b2f115dc3f7516ee55a12.mp3"
+    },
+    {
+      "name": "第六部 阴山古楼 第14章",
+      "url": "https://webfs.tx.kugou.com/202305311513/6df670c2055576b42e1259338eaf6151/v2/df7fa73ab43b6adf1831172db02f1671/KGTX/CLTX001/df7fa73ab43b6adf1831172db02f1671.mp3"
+    },
+    {
+      "name": "第六部 阴山古楼 第15章",
+      "url": "https://webfs.tx.kugou.com/202305311513/9c3ee2694b8b8edb869aedbbc1420fb0/v2/ef56cc135233c60033e75e45b2a16256/KGTX/CLTX003/ef56cc135233c60033e75e45b2a16256.mp3"
+    },
+    {
+      "name": "第六部 阴山古楼 第16章",
+      "url": "https://webfs.tx.kugou.com/202305311513/ec4fdd79915e642df23b2cbd792fd242/v2/d2abfe1ae3af5c6a1b91d51abfba26c1/KGTX/CLTX001/d2abfe1ae3af5c6a1b91d51abfba26c1.mp3"
+    },
+    {
+      "name": "第六部 阴山古楼 第17章",
+      "url": "https://webfs.tx.kugou.com/202305311513/9a67e903647753df222e810e0b676c4f/v2/a9422c76806cd20105bc406007697efb/KGTX/CLTX003/a9422c76806cd20105bc406007697efb.mp3"
+    },
+    {
+      "name": "第六部 阴山古楼 第18章",
+      "url": "https://webfs.tx.kugou.com/202305311513/cf7ce3cff407fa4866128a268acdaaa0/v2/1060967f15e75d56907181592742d5f2/KGTX/CLTX001/1060967f15e75d56907181592742d5f2.mp3"
+    },
+    {
+      "name": "第六部 阴山古楼 第19章",
+      "url": "https://webfs.tx.kugou.com/202305311513/1be3094a25d68fd8a599471343fb130f/v2/bcf01976938a290909e63a42eb18359c/KGTX/CLTX003/bcf01976938a290909e63a42eb18359c.mp3"
+    },
+    {
+      "name": "第六部 阴山古楼 第20章",
+      "url": "https://webfs.tx.kugou.com/202305311513/436774669f7c0bdbcf8479ba422f8fd2/v2/eeb0717958dff04eb6582b3815035b3a/KGTX/CLTX001/eeb0717958dff04eb6582b3815035b3a.mp3"
+    },
+    {
+      "name": "第六部 阴山古楼 第21章",
+      "url": "https://webfs.tx.kugou.com/202305311513/386bd6d94ac26734e3766f8f93f494cc/v2/b68bf758e96a79a22d5915f196fd2a24/KGTX/CLTX001/b68bf758e96a79a22d5915f196fd2a24.mp3"
+    },
+    {
+      "name": "第六部 阴山古楼 第22章",
+      "url": "https://webfs.tx.kugou.com/202305311513/9021b3ced1ebe04edfecc0f9eb3abca0/v2/2f7dcacd6782e949d5fb86e8cb42947d/KGTX/CLTX001/2f7dcacd6782e949d5fb86e8cb42947d.mp3"
+    },
+    {
+      "name": "第六部 阴山古楼 第23章",
+      "url": "https://webfs.tx.kugou.com/202305311513/aa58aba7e57722de818fc9833c512717/v2/75f59e031cb6f5918ffd6806b5e455f5/KGTX/CLTX001/75f59e031cb6f5918ffd6806b5e455f5.mp3"
+    },
+    {
+      "name": "第六部 阴山古楼 第24章",
+      "url": "https://webfs.tx.kugou.com/202305311513/a81c9240f0e76d6a7f00bca1a30deac2/v2/31952c6431072061160c87f9c1834bd7/KGTX/CLTX001/31952c6431072061160c87f9c1834bd7.mp3"
+    },
+    {
+      "name": "第六部 阴山古楼 第25章",
+      "url": "https://webfs.tx.kugou.com/202305311513/82dc6d7b0931632cb1d91c3aec4e99cf/v2/46147ca67a2b8ed3aa3b619702cd9074/KGTX/CLTX001/46147ca67a2b8ed3aa3b619702cd9074.mp3"
+    },
+    {
+      "name": "第六部 阴山古楼 第26章",
+      "url": "https://webfs.tx.kugou.com/202305311513/e5bbaa95f5a00658b7aba2221bc4ce9c/v2/e93e88595c9c48fbf8795160d9702e75/KGTX/CLTX001/e93e88595c9c48fbf8795160d9702e75.mp3"
+    },
+    {
+      "name": "第六部 阴山古楼 第27章",
+      "url": "https://webfs.tx.kugou.com/202305311513/f46c8c10052251117897175378d9a94f/v2/c57fbe10d2c63879d6a26386d04305e6/KGTX/CLTX001/c57fbe10d2c63879d6a26386d04305e6.mp3"
+    },
+    {
+      "name": "第六部 阴山古楼 第28章",
+      "url": "https://webfs.tx.kugou.com/202305311513/da0d94700da047fb47952e8960be6474/v2/e38b073578e25f284e0cc4e082390d07/KGTX/CLTX001/e38b073578e25f284e0cc4e082390d07.mp3"
+    },
+    {
+      "name": "第六部 阴山古楼 第29章",
+      "url": "https://webfs.tx.kugou.com/202305311513/f021235f45050e7f8e152216b7cfe4b6/v2/c0dde9eea221ac8f445014bda6c76eed/KGTX/CLTX001/c0dde9eea221ac8f445014bda6c76eed.mp3"
+    },
+    {
+      "name": "第六部 阴山古楼 第30章",
+      "url": "https://webfs.tx.kugou.com/202305311513/753f4b203ae34084cbbac832d089ebb6/v2/ca5e41a8ec4358f00bd69a27f7017206/KGTX/CLTX001/ca5e41a8ec4358f00bd69a27f7017206.mp3"
+    },
+    {
+      "name": "第六部 阴山古楼 第31章",
+      "url": "https://webfs.tx.kugou.com/202305311513/b253162761420b08e18bbc5007f9ea27/v2/158384644aaa4ab573b55d1eed34156f/KGTX/CLTX001/158384644aaa4ab573b55d1eed34156f.mp3"
+    },
+    {
+      "name": "第七部 邛笼石影 第01章",
+      "url": "https://webfs.tx.kugou.com/202305311513/a8745866bdb9f5ab5af24fedd42744e9/v2/7d0ae564a9abc919d44d600fc5ef1e3a/KGTX/CLTX001/7d0ae564a9abc919d44d600fc5ef1e3a.mp3"
+    },
+    {
+      "name": "第七部 邛笼石影 第02章",
+      "url": "https://webfs.tx.kugou.com/202305311513/859a090a314cb43b8bba58149f6c1be7/v2/d8148faec28e04c797f17d1c4880d47a/KGTX/CLTX001/d8148faec28e04c797f17d1c4880d47a.mp3"
+    },
+    {
+      "name": "第七部 邛笼石影 第03章",
+      "url": "https://webfs.tx.kugou.com/202305311513/5fcbaf7344c894c9143dc37fff93a3f0/v2/de1a9bb6677100a979abb196e13bac3e/KGTX/CLTX001/de1a9bb6677100a979abb196e13bac3e.mp3"
+    },
+    {
+      "name": "第七部 邛笼石影 第04章",
+      "url": "https://webfs.tx.kugou.com/202305311513/abdd03a8d322daa73582b2cd22c270ff/v2/a2e8819adfa6ed3a515744d652acc1a9/G052/M02/06/11/dA0DAFbMsxiAVle5AVETbnZdvZ0808.mp3"
+    },
+    {
+      "name": "第七部 邛笼石影 第05章",
+      "url": "https://webfs.tx.kugou.com/202305311513/25e9c27f35cdb6760c60bfce4361db27/v2/52af25e3f101c08614cbf00244f495f7/KGTX/CLTX001/52af25e3f101c08614cbf00244f495f7.mp3"
+    },
+    {
+      "name": "第七部 邛笼石影 第06章",
+      "url": "https://webfs.tx.kugou.com/202305311513/eaa696664fe7aca9908ee678b36d41b4/v2/a19084f58308ac98539b6978d10a31d2/KGTX/CLTX001/a19084f58308ac98539b6978d10a31d2.mp3"
+    },
+    {
+      "name": "第七部 邛笼石影 第07章",
+      "url": "https://webfs.tx.kugou.com/202305311513/599700c3c127df771f29e2a70bc0f1ff/v2/363d3ac25d79428d38c59d4ae9f597c6/G063/M05/1D/13/fw0DAFbMu4CATSTmAVEbmAAkARk795.mp3"
+    },
+    {
+      "name": "第七部 邛笼石影 第08章",
+      "url": "https://webfs.tx.kugou.com/202305311513/b922b7e2fa7fd24a5b9ab57002b46d3f/v2/a41e6b13abebe815eb7fd0e3c5961a18/G213/M0B/1E/1D/dYcBAF68YbiAe5e-AVEbuhr1tzs537.mp3"
+    },
+    {
+      "name": "第七部 邛笼石影 第09章",
+      "url": "https://webfs.tx.kugou.com/202305311513/784320df6a9a74c78d2425ad7c20b145/v2/15b9b5a6cd9dff0ba1fef176faf7547e/G234/M07/0C/19/ypQEAF9OuayAPSgkAVEbsOzr3Kg911.mp3"
+    },
+    {
+      "name": "第七部 邛笼石影 第10章",
+      "url": "https://webfs.tx.kugou.com/202305311513/7c951b7bd2da4e1e88a2b8e4a95088bc/v2/73161cda7428420ab0439405bb2b50bb/G056/M09/19/1B/GJQEAFbMsxSAf9KHAVEbmFdBIvs714.mp3"
+    },
+    {
+      "name": "第七部 邛笼石影 第11章",
+      "url": "https://webfs.tx.kugou.com/202305311513/1f730b23f71a90bda8b2b46aaabc855d/v2/a5f62615bfd3e8389251d6ef29a7a7ee/G050/M00/1E/11/0oYBAFbMs-2AD5BiAVEbmI5e6Xk643.mp3"
+    },
+    {
+      "name": "第七部 邛笼石影 第12章",
+      "url": "https://webfs.tx.kugou.com/202305311513/c1200193ab67482292a85089a5f5cc12/v2/1e487c2634542ad582bf200853c858c7/G063/M07/14/11/fw0DAFbMsuaAL-aHAVEbmK37cwo007.mp3"
+    },
+    {
+      "name": "第七部 邛笼石影 第13章",
+      "url": "https://webfs.tx.kugou.com/202305311513/d459f0ef7fc7e09cc317581bc0ec4221/v2/ba95121bb00e31c8cc4f918966abc7ac/G060/M0B/1B/11/fA0DAFbMs5KAQfOAAVEbmFJ6QgM831.mp3"
+    },
+    {
+      "name": "第七部 邛笼石影 第14章",
+      "url": "https://webfs.tx.kugou.com/202305311513/cc8702f3827fb399c73bb50bc83a53e9/v2/d0f2f6dea050603de5c984c566c21605/G055/M01/13/13/F5QEAFbMsxuAL99jAVEbmE7PT3Q085.mp3"
+    },
+    {
+      "name": "第七部 邛笼石影 第15章",
+      "url": "https://webfs.tx.kugou.com/202305311513/8663e8265e706653813ca5bffa8f2ecf/v2/c1449132b074d82c94943c2f4302555f/G058/M02/17/13/2oYBAFbMs6SAEBgCAVEbmKtgbFU870.mp3"
+    },
+    {
+      "name": "第七部 邛笼石影 第16章",
+      "url": "https://webfs.tx.kugou.com/202305311513/1367d7fccc642103e487341634eecff1/v2/e459b3cf1fda2df350a40aa7f7b95dce/G050/M01/1E/05/0oYBAFbfpWKANvbtAVEbQ2emWaw635.mp3"
+    },
+    {
+      "name": "第七部 邛笼石影 第17章",
+      "url": "https://webfs.tx.kugou.com/202305311513/9061892ae252c368f2667613098a8201/v2/6a1c746da2e03738187f31b602c0e7c3/G056/M0A/19/0D/eA0DAFbMs5yAEAmlAVEbmGkJarg440.mp3"
+    },
+    {
+      "name": "第七部 邛笼石影 第18章",
+      "url": "https://webfs.tx.kugou.com/202305311513/a242b73d833ed5fe26a9c44d9cdbf954/v2/7c57373d47b880e9fa98687a5769833c/G063/M06/0B/03/H5QEAFbMufOAOgBxAVEbmKetDgM395.mp3"
+    },
+    {
+      "name": "第七部 邛笼石影 第19章",
+      "url": "https://webfs.tx.kugou.com/202305311513/fde91cdf64f09aa6a69cde32385438d3/v2/1de52cb94b25d7036342f26511906a91/G054/M06/16/07/1oYBAFawVmqAKoH_AVEbmHqeyNI845.mp3"
+    },
+    {
+      "name": "第七部 邛笼石影 第20章",
+      "url": "https://webfs.tx.kugou.com/202305311513/2d92b3b728f00aec7068ce80fe2381cb/v2/a4c8688e81e05de5a77281bdcd4a0c5c/KGTX/CLTX001/a4c8688e81e05de5a77281bdcd4a0c5c.mp3"
+    },
+    {
+      "name": "第七部 邛笼石影 第21章",
+      "url": "https://webfs.tx.kugou.com/202305311513/62e3bee8f9e699ee7234c513a583fad1/v2/8ab65e721944c3aca9122297a8811cd5/KGTX/CLTX003/8ab65e721944c3aca9122297a8811cd5.mp3"
+    },
+    {
+      "name": "第七部 邛笼石影 第22章",
+      "url": "https://webfs.tx.kugou.com/202305311513/08d9735270dc31a96d7fdebcbfbd8273/v2/e455edc82d278abc92f9f110e2875676/KGTX/CLTX003/e455edc82d278abc92f9f110e2875676.mp3"
+    },
+    {
+      "name": "第七部 邛笼石影 第23章",
+      "url": "https://webfs.tx.kugou.com/202305311513/83931c0250d8793064467c9b93565063/v2/7cc9749b20ed4ac952485c64cfbf8401/KGTX/CLTX001/7cc9749b20ed4ac952485c64cfbf8401.mp3"
+    },
+    {
+      "name": "第七部 邛笼石影 第24章",
+      "url": "https://webfs.tx.kugou.com/202305311514/cac59aa5bd69123451465b40526110a4/v2/2871dae707cdee5aec2e471ae4d7182c/KGTX/CLTX001/2871dae707cdee5aec2e471ae4d7182c.mp3"
+    },
+    {
+      "name": "第七部 邛笼石影 第25章",
+      "url": "https://webfs.tx.kugou.com/202305311514/a20fd22ece532c850d920df8ce6a0680/v2/b0d8f3c55b0a4434952bfe823f5a0040/G057/M05/1A/04/eQ0DAFasgXSAS-oWAVEbmIskXGM956.mp3"
+    },
+    {
+      "name": "第七部 邛笼石影 第26章",
+      "url": "https://webfs.tx.kugou.com/202305311514/9271aa89165823e8c64f0fb542704acf/v2/b04fea10fd5c5183202b16faf68eca4a/G059/M00/0D/1B/G5QEAFbACXuAY3GEAVEbmIN9Ib0438.mp3"
+    },
+    {
+      "name": "第七部 邛笼石影 第27章",
+      "url": "https://webfs.tx.kugou.com/202305311514/929425683294aa16f230863bb825990d/v2/b925087ec81070657e3a91449738850c/KGTX/CLTX001/b925087ec81070657e3a91449738850c.mp3"
+    },
+    {
+      "name": "第七部 邛笼石影 第28章",
+      "url": "https://webfs.tx.kugou.com/202305311514/a5323681a9ce810a244fe4556d5cd370/v2/3bbfd22bdfacb4e779ceddf07889438e/G059/M07/08/11/ew0DAFbMtEOAJacHAVEbmOTnZ_Q278.mp3"
+    },
+    {
+      "name": "第七部 邛笼石影 第29章",
+      "url": "https://webfs.tx.kugou.com/202305311514/ed73a7266df6143b15a3e9fb4bb6da5d/v2/5c85180638109b13348a5e9f82978fef/G063/M03/12/13/34YBAFbMtECAYHn2AVEbmHnLO4U970.mp3"
+    },
+    {
+      "name": "第七部 邛笼石影 第30章",
+      "url": "https://webfs.tx.kugou.com/202305311514/58004013ceadcff789f70dc671908096/v2/327cb2610837bf8cf723eb95085e5113/G166/M05/05/19/hpQEAF1vd2yAOEgrAVEbmHj0wx4244.mp3"
+    },
+    {
+      "name": "第七部 邛笼石影 第31章",
+      "url": "https://webfs.tx.kugou.com/202305311514/33379c15694378bcc256764e270c5241/v2/2fa74cc5f55153936141e86c2c57c99f/G220/M01/16/13/fIcBAF8IR_OAO-7FAVEbmK6bDso714.mp3"
+    },
+    {
+      "name": "第七部 邛笼石影 第32章",
+      "url": "https://webfs.tx.kugou.com/202305311514/4f9ce76ae51bf0f86939401e9491506e/v2/4be17d5ebed43a6b7d8e0f3adcecbca9/G197/M06/0D/07/pZQEAF5u_sOAPExOAVEYbEotVQs237.mp3"
+    },
+    {
+      "name": "第七部 邛笼石影 第33章",
+      "url": "https://webfs.tx.kugou.com/202305311514/fc558e337d5925a95e99fd7603844d1c/v2/9b5fcb7ff120bf3b7506eef01c5e562d/G063/M01/0D/17/H5QEAFbMt9qAWHIXAVEbmIcUj6E909.mp3"
+    },
+    {
+      "name": "第七部 邛笼石影 第34章",
+      "url": "https://webfs.tx.kugou.com/202305311514/4c20edc8733c71999f73e4175181b852/v2/1342c83883e03d88b2f484190539db7a/G063/M00/19/18/H5QEAFbMtEiAQtFxAVEEvZSsZo0950.mp3"
+    },
+    {
+      "name": "第八部 大结局(上) 第01章",
+      "url": "https://webfs.tx.kugou.com/202305311514/27b1265cd6c8f7ae58dc2805e0c3cb82/v2/24742334f6a0c702db7182dac406812d/G063/M08/03/11/34YBAFbMs7mAARSXAVEEw5QhFZM660.mp3"
+    },
+    {
+      "name": "第八部 大结局(上) 第02章",
+      "url": "https://webfs.tx.kugou.com/202305311514/fbdf80f001ab839e25aadcb19e052592/v2/dc2d48fe02dc264dc224d4eb87bf16b9/G209/M08/1E/05/sZQEAF6-P2eAQhw2AVEOrpD9VsA567.mp3"
+    },
+    {
+      "name": "第八部 大结局(上) 第03章",
+      "url": "https://webfs.tx.kugou.com/202305311514/1ae6fb23ec2874b36cad72daa192056d/v2/bbcfc298c6d633a73d108a4fc80ed9d9/G060/M08/04/00/fA0DAFbMs7iAXkT1AVETdKWlGnU603.mp3"
+    },
+    {
+      "name": "第八部 大结局(上) 第04章",
+      "url": "https://webfs.tx.kugou.com/202305311514/1b307934dda66fdad2b98256ff81ffd9/v2/7329475b9892f945da92e464a7b77cd0/KGTX/CLTX003/7329475b9892f945da92e464a7b77cd0.mp3"
+    },
+    {
+      "name": "第八部 大结局(上) 第05章",
+      "url": "https://webfs.tx.kugou.com/202305311514/72c9c135c45f3a9932a8d1c553984975/v2/bb5668b77eac6df07ab5f0c3e38e5714/KGTX/CLTX001/bb5668b77eac6df07ab5f0c3e38e5714.mp3"
+    },
+    {
+      "name": "第八部 大结局(上) 第06章",
+      "url": "https://webfs.tx.kugou.com/202305311514/4de780c4dfd95256974992f3e0da2603/v2/9720abb23f789aeecff32d497d59e05f/G054/M06/13/03/1oYBAFbMs-OAPVdGAVETdMynTBA750.mp3"
+    },
+    {
+      "name": "第八部 大结局(上) 第07章",
+      "url": "https://webfs.tx.kugou.com/202305311514/b180401b5688449a89e7939745c74ad3/v2/1eb1cd9b9d56ad76c9d500379268754f/G062/M0B/12/07/3oYBAFbMslOAF2W8AVETdDLJcr4157.mp3"
+    },
+    {
+      "name": "第八部 大结局(上) 第08章",
+      "url": "https://webfs.tx.kugou.com/202305311514/222eac17570f35696f18b0f088be2027/v2/c277c74c931fd8d16a0a72e97e232ea2/G055/M06/06/15/F5QEAFbMtByACa9pAVETdEppUWs728.mp3"
+    },
+    {
+      "name": "第八部 大结局(上) 第09章",
+      "url": "https://webfs.tx.kugou.com/202305311514/aaba31180268073db8741c2783a6a326/v2/4a964585cbbd724b92be766b07ae27e6/G052/M01/08/1B/1IYBAFbMtBKAQr0RAVETdMK8Fec238.mp3"
+    },
+    {
+      "name": "第八部 大结局(上) 第10章",
+      "url": "https://webfs.tx.kugou.com/202305311514/b47e7df3993a90bdc64e7c5d15792c59/v2/6b257889def60f62c5ef1c8c18e3e43b/G050/M01/04/0B/0oYBAFbMs7aAKBBKAVETdPIWh6k127.mp3"
+    },
+    {
+      "name": "第八部 大结局(上) 第11章",
+      "url": "https://webfs.tx.kugou.com/202305311514/3577b8399434080815ba79317dd771c1/v2/b416d68b74c67051c7b0b32b04f7e8fe/G060/M00/1F/04/fA0DAFbMsxyAP9gSAVETbhccWrE188.mp3"
+    },
+    {
+      "name": "第八部 大结局(上) 第12章",
+      "url": "https://webfs.tx.kugou.com/202305311514/d76d67013f424c9e77442a2e54bbb47d/v2/61623149f6ab01b247281624a6acd51b/KGTX/CLTX001/61623149f6ab01b247281624a6acd51b.mp3"
+    },
+    {
+      "name": "第八部 大结局(上) 第13章",
+      "url": "https://webfs.tx.kugou.com/202305311514/d69d55f0736f69d1e73d64d24fbaca17/v2/3318096921db38fad776e6138dbf7120/G224/M01/1D/15/gIcBAF9OvWSAVw9qAVEOqPIWaUs878.mp3"
+    },
+    {
+      "name": "第八部 大结局(上) 第14章",
+      "url": "https://webfs.tx.kugou.com/202305311514/21e603493a391a83f456b06a526c0720/v2/2fdf8a79bb92b9c4fa4cefa48de2fe1f/G172/M01/1F/17/7A0DAF1vd1yAD-RhAVETbh2V-Lk830.mp3"
+    },
+    {
+      "name": "第八部 大结局(上) 第15章",
+      "url": "https://webfs.tx.kugou.com/202305311514/c81ba88f6f375f55e3b3f643ddea3301/v2/48ab14331175443f657d92c4480bd9ce/G056/M02/06/0D/GJQEAFbMsw-AelvtAVETdJXbCBA664.mp3"
+    },
+    {
+      "name": "第八部 大结局(上) 第16章",
+      "url": "https://webfs.tx.kugou.com/202305311514/33b0a43341d5a2f5b8ebe2c086a59197/v2/f9984a8177ddb1275df199a0d56fa20f/KGTX/CLTX001/f9984a8177ddb1275df199a0d56fa20f.mp3"
+    },
+    {
+      "name": "第八部 大结局(上) 第17章",
+      "url": "https://webfs.tx.kugou.com/202305311514/b2b1f2b9ba33d835d64a506661af6649/v2/edad848121cf5a1a9f66dfe3b146197a/G232/M0A/11/1F/KA4DAF7af0mAWMSmAVEQUPoQb8M081.mp3"
+    },
+    {
+      "name": "第八部 大结局(上) 第18章",
+      "url": "https://webfs.tx.kugou.com/202305311514/3ca631ee4b292557cba879c46469cc9e/v2/c5b0bd8141982fae9d58ddf80825469b/G051/M07/09/03/E5QEAFbMsxmAWpgDAVETdAzC_mU498.mp3"
+    },
+    {
+      "name": "第八部 大结局(上) 第19章",
+      "url": "https://webfs.tx.kugou.com/202305311514/3381534baddea37481aa3d3e1c805a8c/v2/d760fa954ca7a681a3883e6c5b7dbb91/KGTX/CLTX003/d760fa954ca7a681a3883e6c5b7dbb91.mp3"
+    },
+    {
+      "name": "第八部 大结局(上) 第20章",
+      "url": "https://webfs.tx.kugou.com/202305311514/f722586bbd7cb944aae53c403ab255d2/v2/beecac29441994d87fed31d57ad35c27/G170/M05/1D/11/SocBAF1vd16AJwgnAVETbl3IaSI630.mp3"
+    },
+    {
+      "name": "第八部 大结局(上) 第21章",
+      "url": "https://webfs.tx.kugou.com/202305311514/daefb9836d8938dd80751bd56e20fed8/v2/068ae86de5639448b1631d049cd53393/G063/M06/1D/13/H5QEAFbMs4-AC1C9AVETboSdY8M244.mp3"
+    },
+    {
+      "name": "第八部 大结局(上) 第22章",
+      "url": "https://webfs.tx.kugou.com/202305311514/4c363a50216e31f61d52a97a4008ed2e/v2/d83d201514112f43139967eb571a972d/G063/M0B/10/11/fw0DAFbMtKaAExjxAVETdFi9bUw277.mp3"
+    },
+    {
+      "name": "第八部 大结局(上) 第23章",
+      "url": "https://webfs.tx.kugou.com/202305311514/2458f093df59ac8f4660944290ea35ce/v2/7f6e2cb7395665259ecf346bc15eeb2d/G207/M0B/14/14/Dw4DAF6c5-yACgciAVEOrtu5orc925.mp3"
+    },
+    {
+      "name": "第八部 大结局(上) 第24章",
+      "url": "https://webfs.tx.kugou.com/202305311514/abae5bafa2cb71adfb87c3f243d62fe9/v2/2fab6226b8fec5bfb5f53dc2c9a43490/G054/M03/11/01/FpQEAFbMsiiAdJ8HAVETdI2u5Rg254.mp3"
+    },
+    {
+      "name": "第八部 大结局(上) 第25章",
+      "url": "https://webfs.tx.kugou.com/202305311514/a7ee52b96e725be129f1c348b7871aaf/v2/12e759d1e2a77a55f3d9ccbca8b76d82/KGTX/CLTX001/12e759d1e2a77a55f3d9ccbca8b76d82.mp3"
+    },
+    {
+      "name": "第八部 大结局(上) 第26章",
+      "url": "https://webfs.tx.kugou.com/202305311514/947de02ec661c5175b36ebdda1c30582/v2/404624d379d933d85e1a647f8674bc52/G058/M01/0C/08/GpQEAFbMsi2AXH_0AVETdB94U30318.mp3"
+    },
+    {
+      "name": "第八部 大结局(上) 第27章",
+      "url": "https://webfs.tx.kugou.com/202305311514/905a5cb4b8f371c97667bcd14c20c070/v2/bcc6c100ea44fc0e94b36d0d44e58e98/G051/M07/19/03/cw0DAFbMsxuAIC0IAVETdILclGo067.mp3"
+    },
+    {
+      "name": "第八部 大结局(上) 第28章",
+      "url": "https://webfs.tx.kugou.com/202305311514/88145818adfdf6dd7da47dcea943b3cb/v2/f534c0dedcc4d6d9815a5216567a5cfb/KGTX/CLTX001/f534c0dedcc4d6d9815a5216567a5cfb.mp3"
+    },
+    {
+      "name": "第八部 大结局(上) 第29章",
+      "url": "https://webfs.tx.kugou.com/202305311514/19aad1cb63e336c06c8dec69423e5857/v2/b224884f1b23fce50ff0bc1e3f8aee3a/G052/M00/1A/17/dA0DAFbMtA2AJCnPAVETblMhFC8198.mp3"
+    },
+    {
+      "name": "第八部 大结局(上) 第30章",
+      "url": "https://webfs.tx.kugou.com/202305311514/ee8fecb1117756f9618cb9d29c6f2a49/v2/6587ecda182afda9be348dd4c4277518/G211/M09/04/07/Ew4DAF7C_l-AartbAVEOrn3Tpzs592.mp3"
+    },
+    {
+      "name": "第八部 大结局(上) 第31章",
+      "url": "https://webfs.tx.kugou.com/202305311514/9a0ea6c0af07a76b65c5e30d47420639/v2/f35174a1d0c73c3405a6f951aa217a9c/KGTX/CLTX003/f35174a1d0c73c3405a6f951aa217a9c.mp3"
+    },
+    {
+      "name": "第八部 大结局(上) 第32章",
+      "url": "https://webfs.tx.kugou.com/202305311514/81b7fa84d11575962c8d3d06c50064d6/v2/2d65b43c7291cfd1942a97ebdcdc9f1b/G232/M00/14/18/iIcBAF81HIqAc6rTAVEQUBnlYas433.mp3"
+    },
+    {
+      "name": "第八部 大结局(上) 第33章",
+      "url": "https://webfs.tx.kugou.com/202305311514/4d795901449b50a4e41d46f6770c139d/v2/49672e515099961850c4d938475e0bbd/G056/M07/0D/1F/GJQEAFbMtA2AeJWMAVD0bxnzGTU255.mp3"
+    },
+    {
+      "name": "第八部 大结局(下) 第01章",
+      "url": "https://webfs.tx.kugou.com/202305311514/8c21e734fe88eb5019225df7bc4d23ec/v2/507501084d09b3cbf353c0a8eb11704f/G235/M06/09/05/y5QEAF7wQAKAPSwkAVDg8qQ0ByE317.mp3"
+    },
+    {
+      "name": "第八部 大结局(下) 第02章",
+      "url": "https://webfs.tx.kugou.com/202305311514/42131a0af5fba0491a0494334aad217f/v2/8fe959f349098d3403341b50b17dcbd3/G249/M01/0D/11/OQ4DAF-_Rx2AB4DLAVDg8jLhy4o267.mp3"
+    },
+    {
+      "name": "第八部 大结局(下) 第03章",
+      "url": "https://webfs.tx.kugou.com/202305311514/941db1bb771a704b39a5349b6d7fd156/v2/d65630fbb41398311932ce95b8be6e26/KGTX/CLTX003/d65630fbb41398311932ce95b8be6e26.mp3"
+    },
+    {
+      "name": "第八部 大结局(下) 第04章",
+      "url": "https://webfs.tx.kugou.com/202305311514/7f94f551de3e4705725ae7985c8bdc7e/v2/08b46050b9213531b7aab04dcc89273e/G061/M0B/05/1D/HZQEAFbMtOaAKyt5AVDkGxwgR04053.mp3"
+    },
+    {
+      "name": "第八部 大结局(下) 第05章",
+      "url": "https://webfs.tx.kugou.com/202305311514/62f63a6b337089cb5c27501cb6cf386e/v2/b2797b9e35b727a53f8a48687e0fb378/G052/M09/08/19/1IYBAFbMtP6AT-Z9AVD699LxGm4791.mp3"
+    },
+    {
+      "name": "第八部 大结局(下) 第06章",
+      "url": "https://webfs.tx.kugou.com/202305311514/0b0335c4d64e88e9987973b7dfcf6d04/v2/70a1e8ad49e5fa6a738773e90270668d/G223/M0A/09/1F/Hw4DAF7wNyGADfoWAVD1vUwQSt4013.mp3"
+    },
+    {
+      "name": "第八部 大结局(下) 第07章",
+      "url": "https://webfs.tx.kugou.com/202305311514/643e73429cb84bd037f268fbe836cd2e/v2/748bb7bcb839e3dd4d927ca121a0d2a3/KGTX/CLTX001/748bb7bcb839e3dd4d927ca121a0d2a3.mp3"
+    },
+    {
+      "name": "第八部 大结局(下) 第08章",
+      "url": "https://webfs.tx.kugou.com/202305311514/4c4aacf85ecb848e2015a0ae65377cea/v2/bc03b046c5a95d8ae008e39316f2a936/KGTX/CLTX001/bc03b046c5a95d8ae008e39316f2a936.mp3"
+    },
+    {
+      "name": "第八部 大结局(下) 第09章",
+      "url": "https://webfs.tx.kugou.com/202305311514/093c91f857d71fe713e2cfa1085f647c/v2/47058a8dd391ee7e69df2b7924ac0e39/KGTX/CLTX003/47058a8dd391ee7e69df2b7924ac0e39.mp3"
+    },
+    {
+      "name": "第八部 大结局(下) 第10章",
+      "url": "https://webfs.tx.kugou.com/202305311514/82718106e77e93d36d43ce54b10b84b3/v2/0443d76fc9cf2c4ee3b480bf858dcc8d/G198/M0B/1E/07/Bg4DAF6Rd5-ASpk0AVD5dXGpIlY376.mp3"
+    },
+    {
+      "name": "第八部 大结局(下) 第11章",
+      "url": "https://webfs.tx.kugou.com/202305311514/4230bc9f72aabccb36028665538d0001/v2/fa9776541f74c4231a226a4e4e1d3ad9/G198/M08/1A/09/ZocBAF6RkymAKtzKAVD30x3oZ3s334.mp3"
+    },
+    {
+      "name": "第八部 大结局(下) 第12章",
+      "url": "https://webfs.tx.kugou.com/202305311514/fd0c47f916c8c931e91484e1fda54477/v2/1df6da33444f7c32611823fbfb754833/G059/M06/12/01/ew0DAFbMuquALbEGAVD697w_TQg182.mp3"
+    },
+    {
+      "name": "第八部 大结局(下) 第13章",
+      "url": "https://webfs.tx.kugou.com/202305311514/b03a485956e59169f9c9249a3ec6f284/v2/4c2b79935b597ec8e22abb773c9760c3/KGTX/CLTX001/4c2b79935b597ec8e22abb773c9760c3.mp3"
+    },
+    {
+      "name": "第八部 大结局(下) 第14章",
+      "url": "https://webfs.tx.kugou.com/202305311514/efdb45a4cc5013b95d1310df5c5eba4b/v2/619c6239e7f18ff44e09b4b2694855d7/G224/M07/04/19/gIcBAF809peAM52CAVD5dRFgnT4106.mp3"
+    },
+    {
+      "name": "第八部 大结局(下) 第15章",
+      "url": "https://webfs.tx.kugou.com/202305311514/1be281420ee7bc8df225266e08f3bbbe/v2/986acfc1c8c2f971b504b1204ec89e75/G055/M07/1D/15/F5QEAFbMs9SASNHcAVD69202nB4209.mp3"
+    },
+    {
+      "name": "第八部 大结局(下) 第16章",
+      "url": "https://webfs.tx.kugou.com/202305311514/acd7f080a891fdc6df16a2cb31bb80cf/v2/ad3030dc4ad42b03a5c0b11cdba3271d/KGTX/CLTX003/ad3030dc4ad42b03a5c0b11cdba3271d.mp3"
+    },
+    {
+      "name": "第八部 大结局(下) 第17章",
+      "url": "https://webfs.tx.kugou.com/202305311514/193da9269cd156b9571380ccf77b9523/v2/c16234a713bd17acd80529a1df93b7bb/KGTX/CLTX001/c16234a713bd17acd80529a1df93b7bb.mp3"
+    },
+    {
+      "name": "第八部 大结局(下) 第18章",
+      "url": "https://webfs.tx.kugou.com/202305311514/9aa9d6bba6f6ddcb7e0896fee9c317b2/v2/b959f6b5b5b1c892d11908c98bcb8511/G164/M05/03/15/RIcBAF1vd0KATWxtAVD68Zq2eKI754.mp3"
+    },
+    {
+      "name": "第八部 大结局(下) 第19章",
+      "url": "https://webfs.tx.kugou.com/202305311514/5cbe828f2a577730716b9ea37235bf45/v2/b732a216cccc176f278c9b4b3ef55d4c/G211/M0B/0F/13/Ew4DAF6c1uGAavKEAVD5dXPHElE765.mp3"
+    },
+    {
+      "name": "第八部 大结局(下) 第20章",
+      "url": "https://webfs.tx.kugou.com/202305311514/709a69f1a21bee410466ac1461101632/v2/cb2ed6883426a1672b6851afd872ba41/G063/M05/01/13/H5QEAFbMtNyAcVQRAVD697gq-jE205.mp3"
+    },
+    {
+      "name": "第八部 大结局(下) 第21章",
+      "url": "https://webfs.tx.kugou.com/202305311514/d6e54377d055270ee159c9aa59e51d1a/v2/659ec0dc1d55223ea22f54a14eb7d675/G057/M03/0A/19/GZQEAFbMsbqAZ9OYAVD698a22PY349.mp3"
+    },
+    {
+      "name": "第八部 大结局(下) 第22章",
+      "url": "https://webfs.tx.kugou.com/202305311514/85e88004c3f1a3dee91eeb47f0006433/v2/419841b72f919e42ff180c264653759d/G058/M01/04/07/2oYBAFbMuzeAGuhaAVD696vzNvo081.mp3"
+    },
+    {
+      "name": "第八部 大结局(下) 第23章",
+      "url": "https://webfs.tx.kugou.com/202305311514/def33aced4bd2d256b5f60afb63ac091/v2/f909eff3d9cb13db80c7be6d1d840c2b/G063/M0B/09/19/H5QEAFbMu1SAYXWdAVD69wvPEtA058.mp3"
+    },
+    {
+      "name": "第八部 大结局(下) 第24章",
+      "url": "https://webfs.tx.kugou.com/202305311514/eb39140dd14de24067222c70b9f24e82/v2/d368d6c1a83489dd4fb15d5342830673/G209/M04/04/05/sZQEAF6dpWqAEYfYAVD5dbT0qbo594.mp3"
+    },
+    {
+      "name": "第八部 大结局(下) 第25章",
+      "url": "https://webfs.tx.kugou.com/202305311514/3ca7c5768ce7c07ad6f937ba373081bd/v2/1a5a4f7a6adffca623e7bda136bb2558/G219/M06/00/05/Gw4DAF61AC-Aa6-DAVD5dfC75Tw508.mp3"
+    },
+    {
+      "name": "第八部 大结局(下) 第26章",
+      "url": "https://webfs.tx.kugou.com/202305311514/d66051faa6c7d288842f49851d625b97/v2/d87d0859c76cf2b3d90d0fb7b06a7e1b/G231/M01/1E/19/h4cBAF7wsEWAKEMrAVD3zSsyuyw075.mp3"
+    },
+    {
+      "name": "第八部 大结局(下) 第27章",
+      "url": "https://webfs.tx.kugou.com/202305311514/006480cfd11b22826839642c7c39eadf/v2/f6a50c79cf215ca7fa560201854ccd3a/G061/M07/0A/0D/HZQEAFbMsb2AJ_tSAVD6931SiFY872.mp3"
+    },
+    {
+      "name": "第八部 大结局(下) 第28章",
+      "url": "https://webfs.tx.kugou.com/202305311514/397580c23895caa41ea260555ca40980/v2/062b194eeb52e890e72b2f2897f9bec8/G051/M08/14/19/E5QEAFbMuFeAf77XAVD69xSnZks584.mp3"
+    },
+    {
+      "name": "第八部 大结局(下) 第29章",
+      "url": "https://webfs.tx.kugou.com/202305311514/8b346205d5ed76431f3212d1803a226c/v2/7e66f8bf5a9f4b3fece6d5a3cc035168/G233/M06/0F/17/iYcBAF81FNqAcaobAVD304dwHiE277.mp3"
+    },
+    {
+      "name": "第八部 大结局(下) 第30章",
+      "url": "https://webfs.tx.kugou.com/202305311514/e5012345c93f114a9cd277296c52a308/v2/2cef4469550331ea98ac469e8fe50341/G054/M00/0C/17/FpQEAFbMuvOAWhTHAVD695-YF-E022.mp3"
+    }
+  ];
+  
+  function play(){
+    let _index = Number($('#next').attr('index'));
+    console.log('next',_index);
+    $('#myVideo').attr('src', list[_index+1].url);
+    $('#myVideo')[0].play();
+    $('#next').attr('index', Number(_index)+1);
+
+  }
+  function videoInit() {
+    var index = 0;
+    let elevideo = document.getElementById('myVideo');
+    elevideo.addEventListener(
+      'ended',
+      () => {
+        //结束
+        console.log('播放结束');
+        play()
+      },
+      false
+    );
+  
+  };
+
+  videoInit();
+</script>
