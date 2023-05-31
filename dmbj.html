@@ -9,8 +9,10 @@
 </head>
 
 <body>
-  <video id="myVideo" src="https://webfs.tx.kugou.com/202305311510/fb4f6f8cd0101fc9cb70971bc7c346bc/v2/363ec5946afc285104acdd7abdf6f16c/KGTX/CLTX001/363ec5946afc285104acdd7abdf6f16c.mp3" controls="controls">
+  <video webkit-playsinline='true' playsinline='true' id="myVideo" src="https://webfs.tx.kugou.com/202305311510/fb4f6f8cd0101fc9cb70971bc7c346bc/v2/363ec5946afc285104acdd7abdf6f16c/KGTX/CLTX001/363ec5946afc285104acdd7abdf6f16c.mp3" controls="controls">
   </video>
+  <p id="p">1</p>
+  <button id="pre" index="0">pre</button>
   <button id="next" index="0">next</button>
 </body>
 </html>
@@ -1266,15 +1268,21 @@
       "url": "https://webfs.tx.kugou.com/202305311514/e5012345c93f114a9cd277296c52a308/v2/2cef4469550331ea98ac469e8fe50341/G054/M00/0C/17/FpQEAFbMuvOAWhTHAVD695-YF-E022.mp3"
     }
   ];
-  
-  function play(){
-    let _index = Number($('#next').attr('index'));
+</script>
+<script>
+function play(type = ''){
+  let currentIndex = Number($('#next').attr('index'));
+    let _index = (type==='pre') ? Number($('#next').attr('index')) - 1 : Number($('#next').attr('index')) + 1;
     console.log('next',_index);
-    $('#myVideo').attr('src', list[_index+1].url);
+    $('#myVideo').attr('src', list[_index].url);
     $('#myVideo')[0].play();
-    $('#next').attr('index', Number(_index)+1);
-
+    $('#pre').attr('index', Number(_index));
+    $('#next').attr('index', Number(_index));
+    $('#p').text(`${list[_index].name}-${_index}`)
   }
+  $('#p').text(`${list[0].name}-${1}`)
+  $('#pre').on('click',() => Number($('#next').attr('index')) > 0 && play('pre'))
+  $('#next').on('click',() => play())
   function videoInit() {
     var index = 0;
     let elevideo = document.getElementById('myVideo');
