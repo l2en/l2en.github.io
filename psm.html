@@ -10489,13 +10489,14 @@
         selectedValue+=$(dom).val()
       }
     });
+    selectedValue = selectedValue.replace(/[0-9]/g, '')
     $('#trueorfalse').show();
     if (selectedValue == $('.ok').attr('right')) {
       $('#trueorfalse').html('✅')
     } else {
       $('#trueorfalse').html('❌')
     }
-    $('.ans1').html(selectedValue.replace(/[0-9]/g, ''));
+    $('.ans1').html(selectedValue);
     $('.ans2').html($('.ok').attr('right'));
     $('.ans3').html($('.jieshi').attr('jieshi'));
     if (window.autoNext) {
