@@ -10495,7 +10495,7 @@
     } else {
       $('#trueorfalse').html('❌')
     }
-    $('.ans1').html(selectedValue);
+    $('.ans1').html(selectedValue.replace(/[0-9]/g, ''));
     $('.ans2').html($('.ok').attr('right'));
     $('.ans3').html($('.jieshi').attr('jieshi'));
     if (window.autoNext) {
