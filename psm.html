@@ -10364,7 +10364,8 @@
       <button class="next btns">下一题</button>
     </div>
     <input type="text" id='order' /><button id="go">go</button><br/>
-    随机模式: <input type="radio" name='rad' value="1"/>是 <input type="radio" name='rad' checked value="0"/>否
+    随机模式: <input type="radio" name='rad' value="1"/>是 <input type="radio" name='rad' checked value="0"/>否<br/>
+    自动下一题: <input type="radio" name='verify' value="1"/>是 <input type="radio" name='verify' checked value="0"/>否
   </fieldset>
 </body>
 
@@ -10422,6 +10423,7 @@
   window.index = 0;
   window.autoNext = false;
   window.rad = 0;
+
   function render(i = 0) {
     $('#trueorfalse').hide();
 
@@ -10503,7 +10505,7 @@
     $('.ans1').html(selectedValue);
     $('.ans2').html($('.ok').attr('right'));
     $('.ans3').html($('.jieshi').attr('jieshi'));
-    if (window.autoNext) {
+    if (window.autoNext == 1) {
       var timer = setTimeout(() => {
         $('.next').click();
         clearTimeout(timer)
@@ -10541,6 +10543,12 @@
   $('input[name="rad"]').on('click', () => {
     var r = $('input[name="rad"]:checked').val();
     window.rad = r;
+    console.log('r', r);
+  })
+
+  $('input[name="verify"]').on('click', () => {
+    var r = $('input[name="verify"]:checked').val();
+    window.autoNext = r;
     console.log('r', r);
   })
   $('.allTest').text(window.class.length)
