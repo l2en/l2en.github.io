@@ -10359,9 +10359,9 @@
       <div class="jieshi">解释：<span class="ans3"></span></div>
     </div>
     <div class="btn">
-      <button class="ok" testid="">确认</button>
-      <button class="prev">上一题</button>
-      <button class="next">下一题</button>
+      <button class="ok btns" testid="">确认</button>
+      <button class="prev btns">上一题</button>
+      <button class="next btns">下一题</button>
     </div>
     <input type="text" id='order' /><button id="go">go</button><br/>
     随机模式: <input type="radio" name='rad' value="1"/>是 <input type="radio" name='rad' checked value="0"/>否
@@ -10374,7 +10374,11 @@
     margin: 0;
     padding: 0;
   }
-
+  .btns {
+      width: 6rem;
+      height: 4rem;
+      display: inline-block;
+  }
   .cl {
     margin: 40px auto;
     width: 90vw;
