@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Watermark Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            text-align: center;
+        }
+        canvas {
+            max-width: 100%;
+            border: 1px solid #ccc;
+            margin-top: 20px;
+        }
+        .slider-container {
+            margin-top: 10px;
+        }
+        .slider-label {
+            display: inline-block;
+            width: 120px;
+            text-align: right;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Image Watermark Generator</h1>
+        <input type="file" id="imageInput" accept="image/*"><br><br>
+        <textarea id="watermarkText" placeholder="Enter watermark text" rows="2" style="width: 100%;"></textarea><br><br>
+        <div class="slider-container">
+            <label class="slider-label" for="fontSize">Font Size (px):</label>
+            <input type="number" id="fontSize" min="10" max="100" value="20">
+        </div>
+        <div class="slider-container">
+            <label class="slider-label" for="xSpacing">Horizontal Spacing:</label>
+            <input type="range" id="xSpacing" min="50" max="300" value="100">
+        </div>
+        <div class="slider-container">
+            <label class="slider-label" for="ySpacing">Vertical Spacing:</label>
+            <input type="range" id="ySpacing" min="50" max="300" value="100">
+        </div><br>
+        <button onclick="generateWatermark()">Generate Watermark</button>
+        <a id="downloadLink" style="display: none;" download="watermarked-image.png">Download Image</a>
+        <canvas id="canvas"></canvas>
+    </div>
+
+    <script>
+        const imageInput = document.getElementById('imageInput');
+        const watermarkText = document.getElementById('watermarkText');
+        const fontSize = document.getElementById('fontSize');
+        const xSpacing = document.getElementById('xSpacing');
+        const ySpacing = document.getElementById('ySpacing');
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        const downloadLink = document.getElementById('downloadLink');
+
+        let image = new Image();
+
+        imageInput.addEventListener('change', (event) => {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    image.src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        image.onload = () => {
+            canvas.width = image.width;
+            canvas.height = image.height;
+            ctx.drawImage(image, 0, 0);
+        };
+
+        function generateWatermark() {
+            if (!image.src) {
+                alert('Please upload an image first.');
+                return;
+            }
+
+            const text = watermarkText.value;
+            if (!text) {
+                alert('Please enter some text for the watermark.');
+                return;
+            }
+
+            const stepX = parseInt(xSpacing.value);
+            const stepY = parseInt(ySpacing.value);
+            const fontSizeValue = parseInt(fontSize.value);
+
+            ctx.drawImage(image, 0, 0);
+            ctx.font = `${fontSizeValue}px Arial`;
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.3)';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+
+            const angle = -30 * Math.PI / 180;
+
+            ctx.save();
+            ctx.translate(canvas.width / 2, canvas.height / 2);
+            ctx.rotate(angle);
+
+            for (let y = -canvas.height; y < canvas.height * 2; y += stepY) {
+                for (let x = -canvas.width; x < canvas.width * 2; x += stepX*2.5) {
+                    ctx.fillText(text, x - canvas.width / 2, y - canvas.height / 2);
+                }
+            }
+
+            ctx.restore();
+
+            downloadLink.href = canvas.toDataURL();
+            downloadLink.style.display = 'inline-block';
+            downloadLink.textContent = 'Download Watermarked Image';
+        }
+    </script>
+</body>
+</html>
