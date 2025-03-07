@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>声纹语速起伏检测及水波纹显示</title>
+    <style>
+        canvas {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <button id="startButton">开始检测</button>
+    <button id="stopButton" disabled>停止检测</button>
+    <canvas id="waveCanvas" width="800" height="400"></canvas>
+    <script>
+        const startButton = document.getElementById('startButton');
+        const stopButton = document.getElementById('stopButton');
+        const canvas = document.getElementById('waveCanvas');
+        const ctx = canvas.getContext('2d');
+
+        let audioContext;
+        let analyser;
+        let source;
+        let stream;
+        let dataArray;
+        let bufferLength;
+        let animationFrameId;
+
+        // 开始检测
+        startButton.addEventListener('click', async () => {
+            try {
+                audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+                source = audioContext.createMediaStreamSource(stream);
+                analyser = audioContext.createAnalyser();
+                analyser.fftSize = 2048;
+                bufferLength = analyser.frequencyBinCount;
+                dataArray = new Uint8Array(bufferLength);
+
+                source.connect(analyser);
+
+                function draw() {
+                    animationFrameId = requestAnimationFrame(draw);
+
+                    analyser.getByteFrequencyData(dataArray);
+                    // 计算音频能量
+                    let energy = 0;
+                    for (let i = 0; i < bufferLength; i++) {
+                        energy += dataArray[i] * dataArray[i];
+                    }
+                    energy /= bufferLength;
+
+                    // 清屏
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+                    // 绘制水波纹
+                    const centerX = canvas.width / 2;
+                    const centerY = canvas.height / 2;
+                    const maxRadius = Math.min(canvas.width, canvas.height) / 2;
+                    const numCircles = 5;
+                    for (let i = 0; i < numCircles; i++) {
+                        const radius = maxRadius * ((i + 1) / numCircles);
+                        const amplitude = energy / 256 * 20; // 根据能量调整幅度
+                        const phase = Date.now() / 1000 + i;
+                        ctx.beginPath();
+                        for (let angle = 0; angle < 2 * Math.PI; angle += 0.01) {
+                            const r = radius + amplitude * Math.sin(angle * 10 + phase);
+                            const x = centerX + r * Math.cos(angle);
+                            const y = centerY + r * Math.sin(angle);
+                            if (angle === 0) {
+                                ctx.moveTo(x, y);
+                            } else {
+                                ctx.lineTo(x, y);
+                            }
+                        }
+                        ctx.closePath();
+                        ctx.strokeStyle = `rgba(0, 128, 255, ${1 - i / numCircles})`;
+                        ctx.lineWidth = 2;
+                        ctx.stroke();
+                    }
+                }
+
+                draw();
+
+                startButton.disabled = true;
+                stopButton.disabled = false;
+            } catch (error) {
+                console.error('获取音频输入失败:', error);
+            }
+        });
+
+        // 停止检测
+        stopButton.addEventListener('click', () => {
+            cancelAnimationFrame(animationFrameId);
+            source.disconnect();
+            stream.getTracks().forEach(track => track.stop());
+            audioContext.close();
+
+            startButton.disabled = false;
+            stopButton.disabled = true;
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+        });
+    </script>
+</body>
+
+</html>
