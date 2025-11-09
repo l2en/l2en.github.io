@@ -7,10 +7,14 @@
     <title>声纹横向数线显示</title>
     <style>
         canvas {
-            border: 1px solid black;
+            border: 1px solid rgb(176, 176, 176);
+            border-top-width: 0;
+            border-right-width: 0;
             width: 90vw;
             position: relative;
+            height: 30vh;
             left: 50%;
+            margin-top: 40px;
             transform: translateX(-50%);
         }
     </style>
@@ -19,7 +23,7 @@
 <body>
     <button id="startButton">开始检测</button>
     <button id="stopButton" disabled>停止检测</button>
-    <canvas id="waveCanvas"  height="400"></canvas>
+    <canvas id="waveCanvas" ></canvas>
     <script>
         const startButton = document.getElementById('startButton');
         const stopButton = document.getElementById('stopButton');
