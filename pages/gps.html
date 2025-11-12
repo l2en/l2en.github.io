@@ -28,29 +28,31 @@
       background: radial-gradient(ellipse at center, #1a1a1a 0%, #000 70%);
       position: relative;
       border-radius: 20px;
-      padding: 40px 30px;
+      padding: 0 30px;
       box-sizing: border-box;
       position: relative;
       z-index: 2;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      gap: 20px;
       transition: padding 1s cubic-bezier(0.4, 0, 0.2, 1);
     }
-    
+
     .dashboard_init {
       padding-left: 15px !important;
       padding-right: 15px !important;
     }
-    
+
     /* 左侧转速表 */
     .gauge-left {
       position: relative;
       z-index: 3;
       top: 0;
+      flex-shrink: 0;
       transition: top 1s cubic-bezier(0.4, 0, 0.2, 1);
     }
-    
+
     .gauge-left_init {
       top: 100px !important;
     }
@@ -60,9 +62,10 @@
       position: relative;
       z-index: 3;
       top: 0;
+      flex-shrink: 0;
       transition: top 1s cubic-bezier(0.4, 0, 0.2, 1);
     }
-    
+
     .gauge-right_init {
       top: 100px !important;
     }
@@ -71,10 +74,10 @@
       width: 30vw;
       height: 30vw;
       position: relative;
-      transition: width 1s cubic-bezier(0.4, 0, 0.2, 1), 
-                  height 1s cubic-bezier(0.4, 0, 0.2, 1);
+      transition: width 1s cubic-bezier(0.4, 0, 0.2, 1),
+        height 1s cubic-bezier(0.4, 0, 0.2, 1);
     }
-    
+
     .gauge_init {
       width: 15vw !important;
       height: 15vw !important;
@@ -141,10 +144,10 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      transition: width 1s cubic-bezier(0.4, 0, 0.2, 1), 
-                  height 1s cubic-bezier(0.4, 0, 0.2, 1);
+      transition: width 1s cubic-bezier(0.4, 0, 0.2, 1),
+        height 1s cubic-bezier(0.4, 0, 0.2, 1);
     }
-    
+
     .gauge_init .gauge-center {
       width: 8.5vw;
       height: 8.5vw;
@@ -186,7 +189,7 @@
       margin: 10px 0;
       transition: font-size 1s cubic-bezier(0.4, 0, 0.2, 1);
     }
-    
+
     .gauge_init .gear-display {
       font-size: 4vw;
     }
@@ -228,7 +231,7 @@
       z-index: 10;
       transition: height 1s cubic-bezier(0.4, 0, 0.2, 1);
     }
-    
+
     .gauge_init .needle {
       height: 5.75vw;
     }
@@ -259,10 +262,10 @@
       transform: translate(-50%, -50%);
       border: 2px solid #666;
       z-index: 11;
-      transition: width 1s cubic-bezier(0.4, 0, 0.2, 1), 
-                  height 1s cubic-bezier(0.4, 0, 0.2, 1);
+      transition: width 1s cubic-bezier(0.4, 0, 0.2, 1),
+        height 1s cubic-bezier(0.4, 0, 0.2, 1);
     }
-    
+
     .gauge_init .needle-center {
       width: 10px;
       height: 10px;
@@ -270,13 +273,113 @@
 
     /* 中央信息面板 */
     .center-panel {
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%, -50%);
-      width: 400px;
+      position: relative;
+      flex: 1;
       text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-width: 0;
     }
+    
+    /* 普通模式视图 */
+    .center-panel-normal {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      opacity: 0;
+      visibility: hidden;
+      transform: scale(0.95);
+      transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+                  transform 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+                  visibility 0s 0.5s;
+      pointer-events: none;
+    }
+    
+    .center-panel-normal.active {
+      opacity: 1;
+      visibility: visible;
+      transform: scale(1);
+      pointer-events: auto;
+      transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+                  transform 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+                  visibility 0s 0s;
+    }
+    
+    /* Navi 模式视图 */
+    .center-panel-navi {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      opacity: 0;
+      visibility: hidden;
+      transform: scale(1.05);
+      transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+                  transform 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+                  visibility 0s 0.5s;
+      pointer-events: none;
+    }
+    
+    .center-panel-navi.active {
+      opacity: 1;
+      visibility: visible;
+      transform: scale(1);
+      pointer-events: auto;
+      transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+                  transform 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+                  visibility 0s 0s;
+    }
+
+    .center-panel-map {
+      position: absolute;
+      width: 130%;
+      height: 120%;
+      left: 50%;
+      top: 0;
+      transform: translateX(-50%);
+      /* 居中对齐 */
+      background-image: url('./map.png');
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      clip-path: polygon(
+        8% 0%,
+        92% 0%,
+        100% 15%,
+        100% 85%,
+        92% 100%,
+        8% 100%,
+        0% 85%,
+        0% 15%
+      );
+      z-index: 1;
+    }
+    
+    .center-panel-navi .center-panel-map {
+      z-index: 1;
+    }
+    
+    .center-panel-map::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(ellipse at center, 
+                  rgba(0, 0, 0, 0.3) 0%, 
+                  rgba(0, 0, 0, 0.6) 70%, 
+                  rgba(0, 0, 0, 0.8) 100%);
+      pointer-events: none;
+    }
+    
+
 
     .top-bar {
       display: flex;
@@ -284,6 +387,48 @@
       align-items: center;
       padding: 10px 20px;
       margin-bottom: 20px;
+    }
+    
+    /* Navi 模式顶部栏 */
+    .navi-top-bar {
+      position: relative;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 30px;
+      z-index: 100;
+      background: rgba(0, 0, 0, 0.3);
+    }
+    
+    .navi-info-group {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+    
+    .navi-time-group {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+    }
+    
+    .navi-time-group .time-display {
+      font-size: 36px;
+      margin: 0;
+    }
+    
+    .navi-date-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .navi-date-group .weekday,
+    .navi-date-group .date-display {
+      position: static;
+      top: auto;
+      left: auto;
+      margin: 0;
     }
 
     .auto-indicator {
@@ -332,7 +477,12 @@
       display: inline-flex;
       align-items: center;
       gap: 5px;
+      position: relative;
+      left: 0;
+      transition: left 1s cubic-bezier(0.4, 0, 0.2, 1);
     }
+
+
 
     .warning-message {
       color: #aaa;
@@ -356,7 +506,11 @@
       margin-bottom: 10px;
       border-bottom: 1px solid #333;
       padding-bottom: 5px;
+      opacity: 1;
+      transition: opacity 1s cubic-bezier(0.4, 0, 0.2, 1);
     }
+
+
 
     .time-display {
       font-size: 48px;
@@ -367,7 +521,12 @@
       align-items: center;
       justify-content: center;
       gap: 10px;
+      position: relative;
+      top: 0;
+      transition: top 1s cubic-bezier(0.4, 0, 0.2, 1);
     }
+
+
 
     .mute-icon {
       font-size: 24px;
@@ -378,12 +537,26 @@
       color: #fff;
       font-size: 16px;
       margin-top: 5px;
+      position: relative;
+      top: 0;
+      left: 0;
+      transition: top 1s cubic-bezier(0.4, 0, 0.2, 1),
+        left 1s cubic-bezier(0.4, 0, 0.2, 1);
     }
+
+
 
     .weekday {
       color: #aaa;
       font-size: 14px;
+      position: relative;
+      top: 0;
+      left: 0;
+      transition: top 1s cubic-bezier(0.4, 0, 0.2, 1),
+        left 1s cubic-bezier(0.4, 0, 0.2, 1);
     }
+
+
 
     .bottom-info {
       display: flex;
@@ -431,10 +604,10 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      transition: width 1s cubic-bezier(0.4, 0, 0.2, 1), 
-                  height 1s cubic-bezier(0.4, 0, 0.2, 1);
+      transition: width 1s cubic-bezier(0.4, 0, 0.2, 1),
+        height 1s cubic-bezier(0.4, 0, 0.2, 1);
     }
-    
+
     .gauge_init .speed-center {
       width: 8.5vw;
       height: 8.5vw;
@@ -447,7 +620,7 @@
       line-height: 1;
       transition: font-size 1s cubic-bezier(0.4, 0, 0.2, 1);
     }
-    
+
     .gauge_init .speed-value {
       font-size: 4vw;
     }
@@ -577,6 +750,77 @@
       min-width: 35px;
       text-align: right;
     }
+
+    /* 缩放控制器 */
+    .scale-control {
+      position: fixed;
+      bottom: 80px;
+      left: 20px;
+      z-index: 1000;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      background: rgba(0, 0, 0, 0.5);
+      padding: 15px 10px;
+      border-radius: 5px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .scale-control label {
+      color: #fff;
+      font-size: 12px;
+      white-space: nowrap;
+      writing-mode: horizontal-tb;
+    }
+
+    .scale-control input[type="range"] {
+      width: 150px;
+      height: 4px;
+      background: rgba(255, 255, 255, 0.2);
+      outline: none;
+      border-radius: 2px;
+      cursor: pointer;
+      transform: rotate(-90deg);
+      transform-origin: center;
+    }
+
+    .scale-control input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 16px;
+      height: 16px;
+      background: #fff;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+
+    .scale-control input[type="range"]::-moz-range-thumb {
+      width: 16px;
+      height: 16px;
+      background: #fff;
+      border-radius: 50%;
+      cursor: pointer;
+      border: none;
+    }
+
+    .scale-value {
+      color: #fff;
+      font-size: 12px;
+      text-align: center;
+    }
+
+    /* 中央面板元素隐藏过渡 */
+    .center-panel-normal > *,
+    .center-panel-navi > * {
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+
+    .center-panel-normal > *.hidden-by-overlap,
+    .center-panel-navi > *.hidden-by-overlap {
+      opacity: 0 !important;
+      visibility: hidden !important;
+    }
   </style>
 </head>
 
@@ -606,38 +850,69 @@
 
     <!-- 中央信息面板 -->
     <div class="center-panel">
-      <div class="top-bar">
-        <div class="auto-indicator">
-          <div class="light-icon"></div>
-          <span class="auto-text">AUTO</span>
+      <!-- 普通模式视图 -->
+      <div class="center-panel-normal" id="normalView">
+        <div class="center-panel-map"></div>
+        <div class="top-bar">
+          <div class="auto-indicator">
+            <div class="light-icon"></div>
+            <span class="auto-text">AUTO</span>
+          </div>
+          <div class="fuel-warning">
+            <span>⛽</span>
+            <span id="fuelNormal">470km</span>
+          </div>
+          <div class="warning-message">🎵 听雨的声音...</div>
         </div>
-        <div class="fuel-warning">
-          <span>⛽</span>
-          <span>470km</span>
+
+        <div class="date-time-section">
+          <div class="section-title">日期和时间</div>
+          <div class="time-display">
+            <span id="timeDisplay">13:01</span>
+          </div>
+          <div class="weekday" id="weekday">周四</div>
+          <div class="date-display" id="date-display">24.6.2021</div>
         </div>
-        <div class="warning-message">🎵 听雨的声音...</div>
+
+        <div class="bottom-info">
+          <div class="info-item">
+            <div class="info-value">8246<span style="font-size:14px;">km</span></div>
+            <div class="info-label">13:01</div>
+          </div>
+          <div class="info-item">
+            <div class="info-value">705.6<span style="font-size:14px;">km</span></div>
+            <div class="info-label">+28.0°C</div>
+          </div>
+        </div>
       </div>
 
-      <div class="date-time-section">
-        <div class="section-title">日期和时间</div>
-        <div class="time-display">
-          <span id="timeDisplay">13:01</span>
+      <!-- Navi 模式视图 -->
+      <div class="center-panel-navi" id="naviView">
+        <div class="center-panel-map"></div>
+        <div class="navi-top-bar">
+          <div class="navi-info-group">
+            <div class="auto-indicator">
+              <div class="light-icon"></div>
+              <span class="auto-text">AUTO</span>
+            </div>
+            <div class="fuel-warning">
+              <span>⛽</span>
+              <span id="fuelNavi">470km</span>
+            </div>
+          </div>
+          <div class="navi-time-group">
+            <div class="time-display">
+              <span id="timeDisplayNavi">13:01</span>
+            </div>
+          </div>
+          <div class="navi-date-group">
+            <div class="weekday" id="weekdayNavi">周四</div>
+            <div class="date-display" id="dateDisplayNavi">24.6.2021</div>
+          </div>
+          <div class="warning-message">🎵 听雨的声音...</div>
         </div>
-        <div class="weekday" id="weekday">周四</div>
-        <div class="date-display" id="date-display">24.6.2021</div>
       </div>
-
-      <div class="bottom-info">
-        <div class="info-item">
-          <div class="info-value">8246<span style="font-size:14px;">km</span></div>
-          <div class="info-label">13:01</div>
-        </div>
-        <div class="info-item">
-          <div class="info-value">705.6<span style="font-size:14px;">km</span></div>
-          <div class="info-label">+28.0°C</div>
-        </div>
-      </div>
-    </div>
+    </div>""
 
     <!-- 右侧速度表 -->
     <div class="gauge-right gauge-right_init">
@@ -672,6 +947,13 @@
     <label>Padding:</label>
     <input type="range" id="paddingSlider" min="0" max="200" value="30" step="1">
     <span class="padding-value" id="paddingValue">30px</span>
+  </div>
+
+  <!-- 缩放控制器 -->
+  <div class="scale-control">
+    <label>Scale</label>
+    <input type="range" id="scaleSlider" min="0.5" max="5" value="1" step="0.1">
+    <span class="scale-value" id="scaleValue">1.0x</span>
   </div>
 
 </body>
@@ -940,27 +1222,27 @@
 
   // ========== GPS速度获取 ==========
   let gpsWatchId = null;
-  
+
   function startGPSTracking() {
     if (!navigator.geolocation) {
       alert('您的浏览器不支持GPS定位功能');
       return;
     }
-    
+
     useGPS = true;
-    
+
     gpsWatchId = navigator.geolocation.watchPosition(
       (position) => {
         // 获取速度（米/秒）
         const speedMPS = position.coords.speed;
-        
+
         if (speedMPS !== null && speedMPS >= 0) {
           // 转换为公里/小时
           const speedKMH = speedMPS * 3.6;
-          
+
           // 更新速度目标值
           speedTarget = Math.min(speedKMH, MAX_SPEED);
-          
+
           console.log(`GPS速度: ${speedKMH.toFixed(1)} km/h`);
         } else {
           // GPS速度不可用时，设为0
@@ -979,7 +1261,7 @@
       }
     );
   }
-  
+
   function stopGPSTracking() {
     if (gpsWatchId !== null) {
       navigator.geolocation.clearWatch(gpsWatchId);
@@ -989,7 +1271,7 @@
       console.log('GPS追踪已停止');
     }
   }
-  
+
   // 自动启动GPS追踪
   setTimeout(() => {
     startGPSTracking();
@@ -997,15 +1279,15 @@
 
   // ========== 全屏功能（兼容iOS Safari）==========
   const fullscreenBtn = document.getElementById('fullscreenBtn');
-  
+
   // 检测是否为全屏状态（兼容各浏览器）
   function isFullscreen() {
-    return !!(document.fullscreenElement || 
-              document.webkitFullscreenElement || 
-              document.mozFullScreenElement || 
-              document.msFullscreenElement);
+    return !!(document.fullscreenElement ||
+      document.webkitFullscreenElement ||
+      document.mozFullScreenElement ||
+      document.msFullscreenElement);
   }
-  
+
   // 进入全屏（兼容各浏览器）
   function enterFullscreen(element) {
     if (element.requestFullscreen) {
@@ -1025,7 +1307,7 @@
     }
     return Promise.reject(new Error('不支持全屏'));
   }
-  
+
   // 退出全屏（兼容各浏览器）
   function exitFullscreen() {
     if (document.exitFullscreen) {
@@ -1039,7 +1321,7 @@
     }
     return Promise.reject(new Error('不支持退出全屏'));
   }
-  
+
   fullscreenBtn.addEventListener('click', () => {
     if (!isFullscreen()) {
       // 进入全屏
@@ -1064,7 +1346,7 @@
       fullscreenBtn.textContent = 'FULL';
     }
   }
-  
+
   document.addEventListener('fullscreenchange', updateFullscreenButton);
   document.addEventListener('webkitfullscreenchange', updateFullscreenButton);
   document.addEventListener('mozfullscreenchange', updateFullscreenButton);
@@ -1081,16 +1363,74 @@
     dashboard.style.paddingRight = `${value}px`;
     paddingValue.textContent = `${value}px`;
   });
-  document.querySelector('.fuel-warning').addEventListener('click',()=> {
-    if(showCtrl==false){
+
+  // ========== 缩放控制功能 ==========
+  const scaleSlider = document.getElementById('scaleSlider');
+  const scaleValue = document.getElementById('scaleValue');
+  const gaugeLeft = document.querySelector('.gauge-left');
+  const gaugeRight = document.querySelector('.gauge-right');
+
+  // 碰撞检测函数
+  function checkOverlap() {
+    const centerPanel = document.querySelector('.center-panel');
+    const leftRect = gaugeLeft.getBoundingClientRect();
+    const rightRect = gaugeRight.getBoundingClientRect();
+    
+    // 获取当前激活的视图
+    const activeView = document.querySelector('.center-panel-normal.active, .center-panel-navi.active');
+    if (!activeView) return;
+    
+    // 检查视图中的所有直接子元素
+    const children = activeView.children;
+    
+    for (let child of children) {
+      const childRect = child.getBoundingClientRect();
+      
+      // 计算与左侧仪表盘的重合面积
+      const leftOverlap = getOverlapArea(childRect, leftRect);
+      const leftOverlapPercent = leftOverlap / (childRect.width * childRect.height);
+      
+      // 计算与右侧仪表盘的重合面积
+      const rightOverlap = getOverlapArea(childRect, rightRect);
+      const rightOverlapPercent = rightOverlap / (childRect.width * childRect.height);
+      
+      // 如果任一侧重合超过50%，隐藏元素
+      if (leftOverlapPercent > 0.5 || rightOverlapPercent > 0.5) {
+        child.classList.add('hidden-by-overlap');
+      } else {
+        child.classList.remove('hidden-by-overlap');
+      }
+    }
+  }
+  
+  // 计算两个矩形的重合面积
+  function getOverlapArea(rect1, rect2) {
+    const xOverlap = Math.max(0, Math.min(rect1.right, rect2.right) - Math.max(rect1.left, rect2.left));
+    const yOverlap = Math.max(0, Math.min(rect1.bottom, rect2.bottom) - Math.max(rect1.top, rect2.top));
+    return xOverlap * yOverlap;
+  }
+
+  scaleSlider.addEventListener('input', (e) => {
+    const value = parseFloat(e.target.value);
+    gaugeLeft.style.transform = `scale(${value})`;
+    gaugeRight.style.transform = `scale(${value})`;
+    scaleValue.textContent = `${value.toFixed(1)}x`;
+    
+    // 延迟检测以确保transform已应用
+    requestAnimationFrame(() => {
+      checkOverlap();
+    });
+  });
+  document.querySelector('.fuel-warning').addEventListener('click', () => {
+    if (showCtrl == false) {
       showCtrl = true;
-      document.querySelector('.padding-control').style.display = 'block';
-      document.querySelector('.padding-control').style.display = 'block';
-       document.getElementById('naviBtn').style.display = 'block';
+      document.querySelector('.padding-control').style.display = 'flex';
+      document.querySelector('.scale-control').style.display = 'flex';
+      document.getElementById('naviBtn').style.display = 'block';
     } else {
       showCtrl = false;
       document.querySelector('.padding-control').style.display = 'none';
-      document.querySelector('.padding-control').style.display = 'none';
+      document.querySelector('.scale-control').style.display = 'none';
       document.getElementById('naviBtn').style.display = 'none';
     }
   })
@@ -1098,12 +1438,18 @@
   // ========== 初始动画效果 ==========
   // 页面加载完成后，1秒后移除初始类，触发动画
   window.addEventListener('DOMContentLoaded', () => {
+    // 初始激活普通视图
+    const normalView = document.getElementById('normalView');
+    if (normalView) {
+      normalView.classList.add('active');
+    }
+    
     setTimeout(() => {
       // 移除所有初始类
       document.querySelector('.dashboard').classList.remove('dashboard_init');
       document.querySelector('.gauge-left').classList.remove('gauge-left_init');
       document.querySelector('.gauge-right').classList.remove('gauge-right_init');
-      
+
       // 移除所有gauge的初始类
       document.querySelectorAll('.gauge').forEach(gauge => {
         gauge.classList.remove('gauge_init');
@@ -1114,29 +1460,67 @@
   // ========== Navi按钮切换样式 ==========
   const naviBtn = document.getElementById('naviBtn');
   let isStyle1 = false; // 初始为style2（1秒后的状态）
-  
+  let isNaviMode = false; // Navi模式标志
+
+  // 获取两套视图
+  const normalView = document.getElementById('normalView');
+  const naviView = document.getElementById('naviView');
+
+  // 同步时间显示函数
+  function syncTimeDisplays() {
+    const timeText = document.getElementById('timeDisplay').textContent;
+    const weekdayText = document.getElementById('weekday').textContent;
+    const dateText = document.getElementById('date-display').textContent;
+    
+    document.getElementById('timeDisplayNavi').textContent = timeText;
+    document.getElementById('weekdayNavi').textContent = weekdayText;
+    document.getElementById('dateDisplayNavi').textContent = dateText;
+  }
+
   naviBtn.addEventListener('click', () => {
     const dashboardEl = document.querySelector('.dashboard');
     const gaugeLeftEl = document.querySelector('.gauge-left');
     const gaugeRightEl = document.querySelector('.gauge-right');
     const gaugeEls = document.querySelectorAll('.gauge');
-    
+
     if (isStyle1) {
-      // 当前是style1，切换到style2
+      // 当前是navi模式，切换到普通模式
       dashboardEl.classList.remove('dashboard_init');
       gaugeLeftEl.classList.remove('gauge-left_init');
       gaugeRightEl.classList.remove('gauge-right_init');
       gaugeEls.forEach(gauge => gauge.classList.remove('gauge_init'));
+
+      // 切换视图
+      naviView.classList.remove('active');
+      normalView.classList.add('active');
+
       isStyle1 = false;
+      isNaviMode = false;
     } else {
-      // 当前是style2，切换到style1
+      // 当前是普通模式，切换到navi模式
       dashboardEl.classList.add('dashboard_init');
       gaugeLeftEl.classList.add('gauge-left_init');
       gaugeRightEl.classList.add('gauge-right_init');
       gaugeEls.forEach(gauge => gauge.classList.add('gauge_init'));
+
+      // 同步时间数据
+      syncTimeDisplays();
+      
+      // 切换视图
+      normalView.classList.remove('active');
+      naviView.classList.add('active');
+
       isStyle1 = true;
+      isNaviMode = true;
     }
   });
+  
+  // 定时同步时间显示（当在navi模式时）
+  setInterval(() => {
+    if (isNaviMode) {
+      syncTimeDisplays();
+    }
+  }, 1000);
 </script>
 
 </html>
